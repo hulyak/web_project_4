@@ -1,0 +1,9 @@
+.add_button {
+  min-width: 150px;
+  height: 50px;
+  background: #000;
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
