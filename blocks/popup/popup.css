@@ -1,3 +1,11 @@
-@import url("./__container/popup__container.css");
-@import url("./__button/popup__button.css");
-@import url("./__header/popup__header.css");
+.popup {
+  display: none;
+  position: absolute;
+  max-width: 430px;
+  min-height: 330px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

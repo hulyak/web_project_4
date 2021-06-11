@@ -1,0 +1,16 @@
+@import url("./_type_job/popup__input_type_job.css");
+@import url("./_type_name/popup__input_type_name.css");
+
+.popup__input {
+  max-width: 358px;
+  height: 0;
+  margin: 0 auto;
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  opacity: 0.2;
+  outline: none;
+  transition: border-bottom-color 0.8s;
+}

@@ -1,9 +1,22 @@
 @import url("./__text/profile__text.css");
-@import url("./__edit-button/profile__edit-button.css");
+@import url("./__avatar/profile__avatar.css");
+@import url("./__info/profile__info.css");
+@import url("./__group/profile__group.css");
 
 .profile {
   display: flex;
-  justify-content: space-around;
-  width: 880px;
-  margin: 40px auto 50px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 880px;
+  margin: 40px 200px 50px;
+}
+
+@media only screen and (max-width: 320px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 282px;
+    margin: 42px auto 36px;
+  }
 }

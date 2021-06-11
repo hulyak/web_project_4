@@ -5,3 +5,9 @@
   /* or 114% */
   color: #ffffff;
 }
+
+@media only screen and (max-width: 320px) {
+  .profile__text {
+    text-align: center;
+  }
+}

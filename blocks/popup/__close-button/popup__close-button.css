@@ -7,3 +7,8 @@
   right: 30.73%;
   top: 175px;
 }
+
+.popup__close_button:hover {
+  opacity: 0.6;
+  transform: rotate(45deg);
+}

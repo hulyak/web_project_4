@@ -13,118 +13,74 @@
       <img src="images/logo.png" alt="Logo of Around the U.S" />
       <div class="header__line"></div>
     </header>
+
     <main>
       <section class="profile">
         <img
           src="images/avatar.png"
           alt="old person with a red hat smiling to camera"
+          class="profile__avatar"
         />
-        <div>
-          <h1 class="profile__name">Jacques Cousteau</h1>
-          <button class="profile__edit-button">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect x="0.5" y="0.5" width="23" height="23" stroke="white" />
-              <path
-                d="M17 8.32827L9.60377 15.7666L8.28302 14.4194L15.6604 7L17 8.32827ZM7 17L8.96226 16.4118L7.58491 15.0835L7 17Z"
-                fill="white"
-              />
-            </svg>
-          </button>
+        <div class="profile__info">
+          <div class="profile__group"
+            <h1 class="profile__text">Jacques Cousteau</h1>
+            <button class="button_type_edit">
+              <img src="images/EditButton.svg" alt="edit button" />
+            </button>
+          </div>
+
           <p class="profile__job">Explorer</p>
         </div>
 
-        <section class="popup">
-          <button type="button" class="popup__close-button">
-            <svg
-              width="58"
-              height="58"
-              viewBox="0 0 58 58"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M41.5708 13.2865L29 25.8573L16.4292 13.2865L13.2865 16.4292L25.8573 29L13.2865 41.5708L16.4292 44.7135L29 32.1427L41.5708 44.7135L44.7135 41.5708L32.1427 29L44.7135 16.4292L41.5708 13.2865Z"
-                fill="white"
-              />
-            </svg>
-          </button>
-          <h2 class="popup__title">Edit Profile</h2>
-          <form class="popup__form">
-            <input
-              type="text"
-              name="name"
-              class="popup__input popup__input_type_name"
-              placeholder="Jacques Cousteau"
-            />
-            <input
-              type="text"
-              name="description"
-              class="popup__input popup__input_type_job"
-              placeholder="Explorer"
-            />
-            <button type="submit" class="popup__submit-button">Save</button>
-          </form>
-        </section>
-
-        <div class="add_button">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="add_button__vector"
-          >
-            <path
-              d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z"
-              fill="white"
-            />
-          </svg>
+        <div class="button_type_add">
+          <img src="images/plus.svg" alt="plus icon" />
         </div>
       </section>
+
+      <div class="popup">
+        <button type="button" class="popup__close-button">
+          <img src="images/CloseIcon.svg" alt="close icon" />
+        </button>
+        <h2 class="popup__title">Edit Profile</h2>
+        <form class="popup__form">
+          <input
+            type="text"
+            name="name"
+            class="popup__input popup__input_type_name"
+            placeholder="Jacques Cousteau"
+          />
+          <input
+            type="text"
+            name="description"
+            class="popup__input popup__input_type_job"
+            placeholder="Explorer"
+          />
+          <button type="submit" class="popup__submit-button">Save</button>
+        </form>
+      </div>
+
       <section>
         <ul class="elements">
           <li class="element">
             <img src="images/mountain.png" alt="" class="element__image" />
             <div class="element__flex">
               <p class="element__text">Yosemite Valley</p>
-
-              <svg
-                width="21"
-                height="19"
-                viewBox="0 0 21 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
-                  fill="black"
-                />
-              </svg>
+              <img
+                src="images/like.svg"
+                alt="like button"
+                class="button_type_like"
+              />
             </div>
           </li>
           <li class="element">
             <img src="images/mount.png" alt="" class="element__image" />
             <div class="element__flex">
               <p class="element__text">Lake Louise</p>
-              <svg
-                width="21"
-                height="19"
-                viewBox="0 0 21 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
-                  fill="black"
-                />
-              </svg>
+              <img
+                src="images/like.svg"
+                alt="like button"
+                class="button_type_like"
+              />
             </div>
           </li>
           <li class="element">
@@ -135,73 +91,44 @@
             />
             <div class="element__flex">
               <p class="element__text">Bald Mountains</p>
-              <svg
-                width="21"
-                height="19"
-                viewBox="0 0 21 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
-                  fill="black"
-                />
-              </svg>
+              <img
+                src="images/like.svg"
+                alt="like button"
+                class="button_type_like"
+              />
             </div>
           </li>
           <li class="element">
             <img src="images/night.png" alt="" class="element__image" />
             <div class="element__flex">
               <p class="element__text">Latemar</p>
-
-              <svg
-                width="21"
-                height="19"
-                viewBox="0 0 21 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
-                  fill="black"
-                />
-              </svg>
+              <img
+                src="images/like.svg"
+                alt="like button"
+                class="button_type_like"
+              />
             </div>
           </li>
           <li class="element">
             <img src="images/sunrise.png" alt="" class="element__image" />
             <div class="element__flex">
               <p class="element__text">Vanoise Natural Park</p>
-              <svg
-                width="21"
-                height="19"
-                viewBox="0 0 21 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
-                  fill="black"
-                />
-              </svg>
+              <img
+                src="images/like.svg"
+                alt="like button"
+                class="button_type_like"
+              />
             </div>
           </li>
           <li class="element">
             <img src="images/lake.png" alt="" class="element__image" />
             <div class="element__flex">
               <p class="element__text">Lago di Braies</p>
-              <svg
-                width="21"
-                height="19"
-                viewBox="0 0 21 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
-                  fill="black"
-                />
-              </svg>
+              <img
+                src="images/like.svg"
+                alt="like button"
+                class="button_type_like"
+              />
             </div>
           </li>
         </ul>

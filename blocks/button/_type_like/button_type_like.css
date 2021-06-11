@@ -1,0 +1,11 @@
+.button_type_like {
+  cursor: pointer;
+}
+
+.button_type_like:hover {
+  opacity: 0.5;
+}
+
+.button_type_like:active {
+  background-color: #000;
+}

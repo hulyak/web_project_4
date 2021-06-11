@@ -1,0 +1,5 @@
+@media only screen and (max-width: 320px) {
+  .profile__avatar {
+    max-width: 120px;
+  }
+}
