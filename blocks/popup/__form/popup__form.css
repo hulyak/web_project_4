@@ -1,12 +1,8 @@
 .popup__form {
   display: flex;
-  text-align: left;
   flex-direction: column;
-  position: absolute;
-  min-width: 430px;
-  height: 330px;
-  left: 425px;
-  top: 195px;
+  align-items: center;
+  text-align: left;
   background-color: #fff;
   color: #000;
 }

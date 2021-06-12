@@ -1,28 +1,44 @@
-let openFormButton = document.querySelector(".button_type_edit");
-let closeButton = document.querySelector(".popup__close-button");
-let form = document.querySelector(".popup__form");
-let inputName = document.querySelector(".popup__input_type_name");
-let inputJob = document.querySelector(".popup__input_type_job");
-let profileName = document.querySelector(".profile__name");
-let profileJob = document.querySelector(".profile__job");
-let popup = document.querySelector(".popup");
+const openFormButton = document.querySelector(".button_type_edit");
+const closeButton = document.querySelector(".popup__close-button");
+
+const popup = document.querySelector(".popup");
+const form = document.querySelector(".popup__form");
+const overlay = document.querySelector(".popup__overlay");
+
+// profile properties
+const profileName = document.querySelector(".profile__name");
+const profileOccupation = document.querySelector(".profile__occupation");
+
+const profileForm = document.forms.profile;
 
 function toggleForm() {
-  popup.classList.toggle("popup__form_visible");
+  // popup.classList.toggle("popup_opened");
+  popup.style.display = "flex";
+  overlay.style.display = "block";
 }
 
 openFormButton.addEventListener("click", toggleForm);
-closeButton.addEventListener("click", toggleForm);
+
+closeButton.addEventListener("click", () => {
+  popup.style.display = "none";
+  overlay.style.display = "none";
+});
+
+// profileFormNameInput.addEventListener("input", function (event) {
+//   const inputValue = event.target.value;
+//   profileFormNameInput.textContent = inputValue;
+// });
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  let nameInput = document.querySelector(".popup__input_type_name");
-  let jobInput = document.querySelector(".popup__input_type_job");
+  const profileFormNameInput = profileForm.elements.name;
+  const profileFormOccupationInput = profileForm.elements.occupation;
+
   // Get the values of each field from the corresponding value property
   // Select elements where the field values will be entered
   // Insert new values using the textContent property of the querySelector() method
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  profileFormNameInput.value = profileName.textContent;
+  profileFormOccupationInput.value = profileOccupation.textContent;
 }
 
 // Connect the handler to the form: it will watch the submit event
