@@ -2,13 +2,14 @@
 @import url("./__avatar/profile__avatar.css");
 @import url("./__info/profile__info.css");
 @import url("./__group/profile__group.css");
+@import url("./__occupation/profile__occupation.css");
 
 .profile {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 880px;
-  margin: 40px 200px 50px;
+  margin: 40px auto 50px;
 }
 
 @media only screen and (max-width: 320px) {

@@ -4,6 +4,7 @@
   line-height: 48px;
   /* or 114% */
   color: #ffffff;
+  margin: 0 18px 16px 0;
 }
 
 @media only screen and (max-width: 320px) {

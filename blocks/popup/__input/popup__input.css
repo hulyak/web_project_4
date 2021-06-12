@@ -2,15 +2,15 @@
 @import url("./_type_name/popup__input_type_name.css");
 
 .popup__input {
-  /* max-width: 358px;
-  height: 0;
-  margin: 0 auto;
+  max-width: 358px;
+  min-height: 27.26px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  margin: 0 auto 29px;
   font-family: Inter;
   font-size: 14px;
   line-height: 17px;
-  border: none;
-  border-bottom: 1px solid #fff;
   opacity: 0.2;
   outline: none;
-  transition: border-bottom-color 0.8s; */
+  transition: border-bottom-color 0.8s;
 }
