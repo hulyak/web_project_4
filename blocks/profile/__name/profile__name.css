@@ -10,5 +10,7 @@
 @media only screen and (max-width: 320px) {
   .profile__name {
     text-align: center;
+    font-size: 22px;
+    line-height: 27px;
   }
 }

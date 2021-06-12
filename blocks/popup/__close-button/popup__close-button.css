@@ -4,11 +4,12 @@
   left: 66.15%;
   right: 30.73%;
   top: 175px;
-  /* right: 0;
-  top: 0; */
+  right: 0;
+  top: 0;
   outline: none;
   padding: 0;
   border: 0;
+  background-color: #000;
 }
 
 .popup__close_button:hover {

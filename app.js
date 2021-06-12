@@ -11,9 +11,9 @@ const profileOccupation = document.querySelector(".profile__occupation");
 const profileForm = document.forms.profile;
 
 function toggleForm() {
-  // popupContainer.classList.toggle("popup_opened");
-  popupContainer.style.display = "block";
-  popup.style.display = "block";
+  popupContainer.classList.toggle("popup_opened");
+  // popupContainer.style.display = "block";
+  // popup.style.display = "block";
 }
 
 openFormButton.addEventListener("click", toggleForm);
