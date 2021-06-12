@@ -1,0 +1,4 @@
+.profile__bio {
+  display: flex;
+  justify-content: space-between;
+}

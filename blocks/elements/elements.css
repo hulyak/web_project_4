@@ -4,3 +4,9 @@
   max-width: 880px;
   margin: 0 auto 67px;
 }
+
+@media only screen and (max-width: 320px) {
+  .elements {
+    margin-bottom: 50px;
+  }
+}

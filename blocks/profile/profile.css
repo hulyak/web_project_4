@@ -3,6 +3,7 @@
 @import url("./__info/profile__info.css");
 @import url("./__group/profile__group.css");
 @import url("./__occupation/profile__occupation.css");
+@import url("./__bio/profile__bio.css");
 
 .profile {
   display: flex;

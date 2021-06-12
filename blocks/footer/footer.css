@@ -1,6 +1,14 @@
+@import url("./__text/footer__text.css");
+
 .footer {
-  color: #545454;
   max-width: 318px;
-  min-height: 18px;
   margin: 0 762px 60px 200px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 320px) {
+  .footer {
+    max-width: 282px;
+    margin: 0 auto 36px;
+  }
 }
