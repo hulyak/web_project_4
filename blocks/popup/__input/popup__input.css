@@ -1,16 +1,17 @@
-@import url("./_type_job/popup__input_type_job.css");
-@import url("./_type_name/popup__input_type_name.css");
-
 .popup__input {
-  max-width: 358px;
-  min-height: 27.26px;
+  width: 358px;
+  max-width: 100%;
   border: none;
-  border-bottom: 1px solid #fff;
-  margin: 0 auto 29px;
-  font-family: Inter;
+  border-bottom: 1px solid #000;
+  margin: 0 36px 29px;
+  font-family: inherit;
   font-size: 14px;
   line-height: 17px;
   opacity: 0.2;
   outline: none;
-  transition: border-bottom-color 0.8s;
+  display: block;
+}
+
+.popup__input::placeholder {
+  color: #000;
 }

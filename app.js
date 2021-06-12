@@ -1,9 +1,8 @@
 const openFormButton = document.querySelector(".button_type_edit");
 const closeButton = document.querySelector(".popup__close-button");
 
+const popupContainer = document.querySelector(".popup__container");
 const popup = document.querySelector(".popup");
-const form = document.querySelector(".popup__form");
-const overlay = document.querySelector(".popup__overlay");
 
 // profile properties
 const profileName = document.querySelector(".profile__name");
@@ -12,17 +11,18 @@ const profileOccupation = document.querySelector(".profile__occupation");
 const profileForm = document.forms.profile;
 
 function toggleForm() {
-  // popup.classList.toggle("popup_opened");
-  popup.style.display = "flex";
-  overlay.style.display = "block";
+  // popupContainer.classList.toggle("popup_opened");
+  popupContainer.style.display = "block";
+  popup.style.display = "block";
 }
 
 openFormButton.addEventListener("click", toggleForm);
+closeButton.addEventListener("click", toggleForm);
 
-closeButton.addEventListener("click", () => {
-  popup.style.display = "none";
-  overlay.style.display = "none";
-});
+// closeButton.addEventListener("click", () => {
+//   popupContainer.style.display = "none";
+//   popup.style.display = "none";
+// });
 
 // profileFormNameInput.addEventListener("input", function (event) {
 //   const inputValue = event.target.value;
@@ -42,4 +42,4 @@ function handleFormSubmit(evt) {
 }
 
 // Connect the handler to the form: it will watch the submit event
-form.addEventListener("submit", handleFormSubmit);
+profileForm.addEventListener("submit", handleFormSubmit);

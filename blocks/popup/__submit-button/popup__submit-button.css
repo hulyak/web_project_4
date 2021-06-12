@@ -2,6 +2,12 @@
   color: #fff;
   background-color: #000;
   border-radius: 2px;
+  outline: none;
+  display: block;
+  width: 100%;
+  width: 358px;
+  margin: 48px 36px 36px;
+  font-family: inherit;
 }
 
 .popup__submit-button:hover {
