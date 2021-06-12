@@ -10,20 +10,15 @@ const profileOccupation = document.querySelector(".profile__occupation");
 
 const profileForm = document.forms.profile;
 
-function toggleForm() {
-  // popupContainer.classList.toggle("popup_opened");
-  // popupContainer.style.display = "block";
-  // popup.style.display = "block";
-  popup.classList.add("popup_opened");
-}
+openFormButton.addEventListener("click", function () {
+  popupContainer.style.display = "block";
+  popup.style.display = "block";
+});
 
-openFormButton.addEventListener("click", toggleForm);
-closeButton.addEventListener("click", toggleForm);
-
-// closeButton.addEventListener("click", () => {
-//   popupContainer.style.display = "none";
-//   popup.style.display = "none";
-// });
+closeButton.addEventListener("click", function () {
+  popupContainer.style.display = "none";
+  popup.style.display = "none";
+});
 
 // profileFormNameInput.addEventListener("input", function (event) {
 //   const inputValue = event.target.value;
