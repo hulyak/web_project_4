@@ -16,8 +16,8 @@ const profileFormOccupationInput = profileForm.elements.occupation;
 openFormButton.addEventListener("click", function () {
   profileFormNameInput.value = profileName.textContent;
   profileFormOccupationInput.value = profileOccupation.textContent;
-  popupContainer.style.display = "block";
-  popup.style.display = "block";
+  popupContainer.style.display = "flex";
+  popup.style.display = "flex";
   overlay.style.display = "block";
 });
 
