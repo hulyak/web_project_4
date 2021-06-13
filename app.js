@@ -18,21 +18,16 @@ openFormButton.addEventListener("click", function () {
   profileFormOccupationInput.value = profileOccupation.textContent;
   popupContainer.style.display = "block";
   popup.style.display = "block";
-  overlay.style.opacity = "0.5";
-  // popupContainer.classList.add("popup_opened");
+  overlay.style.display = "block";
 });
 
 function closePopup() {
   popupContainer.style.display = "none";
   popup.style.display = "none";
+  overlay.style.display = "none";
 }
 
 closeButton.addEventListener("click", closePopup);
-
-// profileFormNameInput.addEventListener("input", function (event) {
-//   const inputValue = event.target.value;
-//   profileFormNameInput.textContent = inputValue;
-// });
 
 function handleFormSubmit(event) {
   event.preventDefault();
