@@ -4,6 +4,7 @@
   /* identical to box height */
   color: #ffffff;
   margin: 0;
+  text-align: left;
 }
 
 @media only screen and (max-width: 320px) {
