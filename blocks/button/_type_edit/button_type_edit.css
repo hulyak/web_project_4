@@ -2,7 +2,7 @@
   background-color: #000;
   border: 0;
   cursor: pointer;
-  max-width: 24px;
+  width: 24px;
   padding: 0;
 }
 
@@ -12,6 +12,6 @@
 
 @media only screen and (max-width: 320px) {
   .button_type_edit {
-    max-width: 18px;
+    width: 18px;
   }
 }
