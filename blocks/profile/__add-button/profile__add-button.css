@@ -2,11 +2,13 @@
   min-width: 150px;
   height: 50px;
   background: #000;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 2px;
   cursor: pointer;
+  padding: 0;
 }
 
 .profile__add-button:hover {

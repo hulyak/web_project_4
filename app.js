@@ -16,15 +16,11 @@ const profileFormOccupationInput = profileForm.elements.occupation;
 openFormButton.addEventListener("click", function () {
   profileFormNameInput.value = profileName.textContent;
   profileFormOccupationInput.value = profileOccupation.textContent;
-  popupContainer.style.display = "block";
-  popup.style.display = "flex";
-  overlay.style.display = "block";
+  popup.classList.add("popup_opened");
 });
 
 function closePopup() {
-  popupContainer.style.display = "none";
-  popup.style.display = "none";
-  overlay.style.display = "none";
+  popup.classList.remove("popup_opened");
 }
 
 closeButton.addEventListener("click", closePopup);
