@@ -1,6 +1,6 @@
 .popup__input {
-  width: 358px;
-  max-width: 100%;
+  max-width: 358px;
+  width: 100%;
   min-height: 26px;
   border: none;
   border-bottom: 1px solid #000;
@@ -19,6 +19,7 @@
 
 @media only screen and (max-width: 320px) {
   .popup__input {
-    width: 238px;
+    max-width: 238px;
+    margin: 0 22px 30px;
   }
 }

@@ -4,8 +4,9 @@
   border-radius: 10px;
   display: none;
   justify-content: center;
-  align-items: center;
+  max-width: 100%;
   width: 430px;
+  align-items: center;
   animation-name: popup-open;
   animation-duration: 1s;
   position: relative;

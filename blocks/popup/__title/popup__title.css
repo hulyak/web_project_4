@@ -9,6 +9,6 @@
 
 @media only screen and (max-width: 320px) {
   .popup__title {
-    margin-bottom: 76px;
+    margin: 25px 22px 76px;
   }
 }
