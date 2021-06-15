@@ -11,11 +11,10 @@
   <body class="page">
     <header class="header">
       <img
-        src="images/logo.png"
+        src="images/Logo.svg"
         alt="Logo of Around the U.S"
         class="header__logo"
       />
-      <div class="header__line"></div>
     </header>
 
     <main>
@@ -30,13 +29,18 @@
           <button
             class="profile__edit-button"
             aria-label="edit button"
+            type="button"
           ></button>
           <p class="profile__occupation">Explorer</p>
         </div>
-        <button class="profile__add-button" aria-label="Add button"></button>
+        <button
+          class="profile__add-button"
+          aria-label="Add button"
+          type="button"
+        ></button>
       </section>
 
-      <div class="overlay"></div>
+      <!-- Profile Edit Popup -->
       <section class="popup">
         <div class="popup__container">
           <button
@@ -70,12 +74,8 @@
               class="element__image"
             />
             <div class="element__flex">
-              <p class="element__text">Yosemite Valley</p>
-              <img
-                src="images/like.svg"
-                alt="like button"
-                class="element__like-button"
-              />
+              <h2 class="element__text">Yosemite Valley</h2>
+              <button type="button" class="element__like-button" />
             </div>
           </li>
           <li class="element">
@@ -85,12 +85,8 @@
               class="element__image"
             />
             <div class="element__flex">
-              <p class="element__text">Lake Louise</p>
-              <img
-                src="images/like.svg"
-                alt="like button"
-                class="element__like-button"
-              />
+              <h2 class="element__text">Lake Louise</h2>
+              <button type="button" class="element__like-button" />
             </div>
           </li>
           <li class="element">
@@ -100,23 +96,15 @@
               class="element__image"
             />
             <div class="element__flex">
-              <p class="element__text">Bald Mountains</p>
-              <img
-                src="images/like.svg"
-                alt="like button"
-                class="element__like-button"
-              />
+              <h2 class="element__text">Bald Mountains</h2>
+              <button type="button" class="element__like-button" />
             </div>
           </li>
           <li class="element">
             <img src="images/night.png" alt="latemar" class="element__image" />
             <div class="element__flex">
-              <p class="element__text">Latemar</p>
-              <img
-                src="images/like.svg"
-                alt="like button"
-                class="element__like-button"
-              />
+              <h2 class="element__text">Latemar</h2>
+              <button type="button" class="element__like-button" />
             </div>
           </li>
           <li class="element">
@@ -126,12 +114,8 @@
               class="element__image"
             />
             <div class="element__flex">
-              <p class="element__text">Vanoise Natural Park</p>
-              <img
-                src="images/like.svg"
-                alt="like button"
-                class="element__like-button"
-              />
+              <h2 class="element__text">Vanoise Natural Park</h2>
+              <button type="button" class="element__like-button" />
             </div>
           </li>
           <li class="element">
@@ -141,12 +125,8 @@
               class="element__image"
             />
             <div class="element__flex">
-              <p class="element__text">Lago di Braies</p>
-              <img
-                src="images/like.svg"
-                alt="like button"
-                class="element__like-button"
-              />
+              <h2 class="element__text">Lago di Braies</h2>
+              <button type="button" class="element__like-button" />
             </div>
           </li>
         </ul>

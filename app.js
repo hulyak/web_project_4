@@ -2,7 +2,6 @@ const openFormButton = document.querySelector(".profile__edit-button");
 const closeButton = document.querySelector(".popup__close-button");
 
 const popup = document.querySelector(".popup");
-const overlay = document.querySelector(".overlay");
 
 // profile properties
 const profileName = document.querySelector(".profile__name");
@@ -23,7 +22,6 @@ function closePopup() {
 }
 
 closeButton.addEventListener("click", closePopup);
-overlay.addEventListener("click", closePopup);
 
 function handleFormSubmit(event) {
   event.preventDefault();
