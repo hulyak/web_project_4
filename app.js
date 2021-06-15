@@ -1,7 +1,6 @@
 const openFormButton = document.querySelector(".profile__edit-button");
 const closeButton = document.querySelector(".popup__close-button");
 
-const popupContainer = document.querySelector(".popup__container");
 const popup = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
 
@@ -33,5 +32,4 @@ function handleFormSubmit(event) {
   closePopup();
 }
 
-// Connect the handler to the form: it will watch the submit event
 profileForm.addEventListener("submit", handleFormSubmit);
