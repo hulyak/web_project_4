@@ -24,6 +24,7 @@ function closePopup() {
 }
 
 closeButton.addEventListener("click", closePopup);
+overlay.addEventListener("click", closePopup);
 
 function handleFormSubmit(event) {
   event.preventDefault();

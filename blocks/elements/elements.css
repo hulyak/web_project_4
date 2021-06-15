@@ -3,6 +3,12 @@
   margin: 0 auto 67px;
 }
 
+@media only screen and (max-width: 890px) {
+  .elements {
+    max-width: 650px;
+  }
+}
+
 @media only screen and (max-width: 320px) {
   .elements {
     margin-bottom: 50px;

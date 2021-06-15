@@ -1,15 +1,18 @@
 .profile__avatar {
-  display: inline-block;
-  margin-right: 30px;
   max-width: 120px;
   min-height: 120px;
   border-radius: 50%;
+  margin-right: 30px;
+}
+
+@media only screen and (max-width: 890px) {
+  .profile__avatar {
+    margin-right: 0;
+  }
 }
 
 @media only screen and (max-width: 320px) {
   .profile__avatar {
-    max-width: 120px;
-    margin-right: 0;
     margin-bottom: 30px;
   }
 }

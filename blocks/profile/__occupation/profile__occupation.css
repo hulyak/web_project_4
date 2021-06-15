@@ -4,7 +4,10 @@
   /* identical to box height */
   color: #ffffff;
   margin: 0;
-  text-align: left;
+  max-width: 415px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 320px) {
@@ -12,6 +15,6 @@
     text-align: center;
     font-size: 14px;
     line-height: 17px;
-    margin-bottom: 36px;
+    margin: 0 auto 0;
   }
 }
