@@ -11,7 +11,7 @@
   }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 650px) {
   .profile__avatar {
     margin-bottom: 30px;
   }

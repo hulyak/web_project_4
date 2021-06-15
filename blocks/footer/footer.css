@@ -11,6 +11,13 @@
   }
 }
 
+@media only screen and (max-width: 650px) {
+  .footer {
+    max-width: 282px;
+    margin: 0 400px 36px 70px;
+  }
+}
+
 @media only screen and (max-width: 320px) {
   .footer {
     max-width: 282px;

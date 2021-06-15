@@ -18,12 +18,13 @@
   }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 650px) {
   .profile__name {
     max-width: 196px;
     text-align: center;
     font-size: 22px;
     line-height: 27px;
+    margin-bottom: 20px;
     margin-right: 10px;
     margin-left: 48px;
   }
