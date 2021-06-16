@@ -1,8 +1,7 @@
 .element {
   border-radius: 10px;
   background-color: #fff;
-  width: 282px;
-  max-width: 100%;
+  max-width: 282px;
 }
 
 @media only screen and (max-width: 515px) {

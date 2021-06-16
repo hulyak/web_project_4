@@ -3,7 +3,9 @@
   background: url("../../../images/like.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 21px 19px;
+  background-size: contain;
+  background-color: white;
+  outline: none;
   width: 21px;
   height: 19px;
   border: none;
