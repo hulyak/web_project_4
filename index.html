@@ -65,72 +65,44 @@
         </div>
       </section>
 
-      <section class="elements">
-        <ul class="elements__list">
-          <li class="element">
-            <img
-              src="images/mountain.png"
-              alt="yosemite valley"
-              class="element__image"
+      <!-- Add New Card Popup -->
+      <section class="popup">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__close-button"
+            aria-label="Close"
+          ></button>
+          <form name="profile">
+            <h2 class="popup__title">Edit Profile</h2>
+            <input
+              type="text"
+              name="name"
+              class="popup__input popup__input_type_name"
             />
-            <div class="element__flex">
-              <h2 class="element__text">Yosemite Valley</h2>
-              <button type="button" class="element__like-button" />
-            </div>
-          </li>
-          <li class="element">
-            <img
-              src="images/mount.png"
-              alt="lake louise"
-              class="element__image"
+            <input
+              type="text"
+              name="occupation"
+              class="popup__input popup__input_type_job"
             />
-            <div class="element__flex">
-              <h2 class="element__text">Lake Louise</h2>
-              <button type="button" class="element__like-button" />
-            </div>
-          </li>
-          <li class="element">
-            <img
-              src="images/kirill-pershin-1088404-unsplash.jpg"
-              alt="bald mountains"
-              class="element__image"
-            />
-            <div class="element__flex">
-              <h2 class="element__text">Bald Mountains</h2>
-              <button type="button" class="element__like-button" />
-            </div>
-          </li>
-          <li class="element">
-            <img src="images/night.png" alt="latemar" class="element__image" />
-            <div class="element__flex">
-              <h2 class="element__text">Latemar</h2>
-              <button type="button" class="element__like-button" />
-            </div>
-          </li>
-          <li class="element">
-            <img
-              src="images/sunrise.png"
-              alt="vanoise natural park"
-              class="element__image"
-            />
-            <div class="element__flex">
-              <h2 class="element__text">Vanoise National Park</h2>
-              <button type="button" class="element__like-button" />
-            </div>
-          </li>
-          <li class="element">
-            <img
-              src="images/lake.png"
-              alt="lago di braies"
-              class="element__image"
-            />
-            <div class="element__flex">
-              <h2 class="element__text">Lago di Braies</h2>
-              <button type="button" class="element__like-button" />
-            </div>
-          </li>
-        </ul>
+            <button type="submit" class="popup__submit-button">Save</button>
+          </form>
+        </div>
       </section>
+
+      <section class="elements">
+        <ul class="elements__list"></ul>
+      </section>
+
+      <template id="elements">
+        <li class="element">
+          <img class="element__image" />
+          <div class="element__flex">
+            <h2 class="element__text"></h2>
+            <button type="button" class="element__like-button" />
+          </div>
+        </li>
+      </template>
     </main>
     <footer class="footer">
       <p class="footer__text">&copy; 2021 Around the U.S.</p>
