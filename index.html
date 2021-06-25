@@ -40,13 +40,13 @@
         ></button>
       </section>
 
-      <!-- Profile Edit Popup -->
-      <section class="popup">
+      <!-- Edit profile Popup -->
+      <section class="popup popup_type_edit-profile">
         <div class="popup__container">
           <button
             type="button"
-            class="popup__close-button"
-            aria-label="Close"
+            class="popup__close-button popup__close-button_type_edit-profile"
+            aria-label="Close button"
           ></button>
           <form name="profile">
             <h2 class="popup__title">Edit Profile</h2>
@@ -65,37 +65,46 @@
         </div>
       </section>
 
-      <!-- Add New Card Popup -->
-      <section class="popup">
+      <!-- Add Card Popup -->
+      <section class="popup popup_type_add-card">
         <div class="popup__container">
           <button
             type="button"
-            class="popup__close-button"
-            aria-label="Close"
+            class="popup__close-button popup__close-button_type_add-card"
+            aria-label="Close button"
           ></button>
-          <form name="profile">
-            <h2 class="popup__title">Edit Profile</h2>
+          <form name="card">
+            <h2 class="popup__title">New Place</h2>
             <input
               type="text"
-              name="name"
-              class="popup__input popup__input_type_name"
+              name="title"
+              class="popup__input popup__input_type_title"
+              placeholder="Title"
             />
             <input
               type="text"
-              name="occupation"
-              class="popup__input popup__input_type_job"
+              name="imageLink"
+              class="popup__input popup__input_type_image-link"
+              placeholder="Image Link"
             />
-            <button type="submit" class="popup__submit-button">Save</button>
+            <button type="submit" class="popup__submit-button">Create</button>
           </form>
         </div>
       </section>
 
+      <!-- Cards -->
       <section class="elements">
         <ul class="elements__list"></ul>
       </section>
 
+      <!-- Cards Template -->
       <template id="elements">
         <li class="element">
+          <button
+            class="element__delete-button"
+            aria-label="Delete button"
+            type="button"
+          ></button>
           <img class="element__image" />
           <div class="element__flex">
             <h2 class="element__text"></h2>

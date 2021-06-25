@@ -1,8 +1,3 @@
-const openFormButton = document.querySelector(".profile__edit-button");
-const closeButton = document.querySelector(".popup__close-button");
-
-const popup = document.querySelector(".popup");
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -30,49 +25,93 @@ const initialCards = [
   },
 ];
 
-function createCard(data) {
-  const elements = document.querySelector("#elements").content;
-  const element = elements.querySelector(".element").cloneNode(true);
-  element.querySelector(".element__image").src = data.link;
-  element.querySelector(".element__text").textContent = data.name;
-  element
-    .querySelector(".element__like-button")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like-button_active");
-    });
-  return element;
-}
-
-const elementsList = document.querySelector(".elements__list");
-initialCards.forEach((card) => {
-  elementsList.prepend(createCard(card));
-});
+const profileEditButton = document.querySelector(".profile__edit-button");
+const closeProfileButton = document.querySelector(
+  ".popup__close-button_type_edit-profile"
+);
+const addCardButton = document.querySelector(".profile__add-button");
+const closeCardButton = document.querySelector(
+  ".popup__close-button_type_add-card"
+);
 
 // profile properties
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
 
+// profile form properties
 const profileForm = document.forms.profile;
 const profileFormNameInput = profileForm.elements.name;
 const profileFormOccupationInput = profileForm.elements.occupation;
 
-openFormButton.addEventListener("click", function () {
-  profileFormNameInput.value = profileName.textContent;
-  profileFormOccupationInput.value = profileOccupation.textContent;
-  popup.classList.add("popup_opened");
-});
+// add card properties
+const cardForm = document.forms.card;
+const cardFormTitleInput = profileForm.elements.title;
+const cardFormImageInput = profileForm.elements.imageLink;
 
-function closePopup() {
-  popup.classList.remove("popup_opened");
+// Popups
+const popupEditProfile = document.querySelector(".popup_type_edit-profile");
+const popupAddCard = document.querySelector(".popup_type_add-card");
+
+const elementsList = document.querySelector(".elements__list");
+
+function createCard(data) {
+  const elements = document.querySelector("#elements").content;
+  const element = elements.querySelector(".element").cloneNode(true);
+  element.querySelector(".element__image").src = data.link;
+  element.querySelector(".element__text").textContent = data.name;
+
+  element
+    .querySelector(".element__like-button")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__like-button_active");
+    });
+
+  element
+    .querySelector(".element__delete-button")
+    .addEventListener("click", function () {
+      element.remove();
+    });
+
+  return element;
 }
 
-closeButton.addEventListener("click", closePopup);
+initialCards.forEach((card) => {
+  elementsList.prepend(createCard(card));
+});
 
-function handleFormSubmit(event) {
+profileEditButton.addEventListener("click", function () {
+  profileFormNameInput.value = profileName.textContent;
+  profileFormOccupationInput.value = profileOccupation.textContent;
+  popupEditProfile.classList.add("popup_opened");
+});
+
+addCardButton.addEventListener("click", function () {
+  popupAddCard.classList.add("popup_opened");
+});
+
+// close popups
+closeProfileButton.addEventListener("click", () =>
+  popupEditProfile.classList.remove("popup_opened")
+);
+
+closeCardButton.addEventListener("click", () =>
+  popupAddCard.classList.remove("popup_opened")
+);
+
+function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = profileFormNameInput.value;
   profileOccupation.textContent = profileFormOccupationInput.value;
-  closePopup();
+  popupEditProfile.classList.remove("popup_opened");
 }
 
-profileForm.addEventListener("submit", handleFormSubmit);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+function handleCardFormSubmit(event) {
+  event.preventDefault();
+  cardFormImageInput.value = element__image.src;
+  cardFormTitleInput.value = element__text.textContent;
+  popupAddCard.classList.remove("popup_opened");
+}
+
+cardForm.addEventListener("submit", handleCardFormSubmit);
