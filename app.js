@@ -48,33 +48,34 @@ const addCardButton = document.querySelector(".profile__add-button");
 const popupAddCard = document.querySelector(".popup_type_add-card");
 const closeCardButton = document.querySelector(".popup__close_add-card");
 
+const popupPreview = document.querySelector(".popup_type_preview");
+const closePreviewButton = document.querySelector(".popup__close_preview");
+
 const elementsList = document.querySelector(".elements__list");
 
 function createCard(data) {
   const elements = document.querySelector("#cards-template").content;
   const element = elements.querySelector(".element").cloneNode(true);
-  element.querySelector(
-    ".element__image"
-  ).style.backgroundImage = `url(${data.link})`;
+  const elementImage = element.querySelector(".element__image");
+  elementImage.style.backgroundImage = `url(${data.link})`;
   element.querySelector(".element__text").textContent = data.name;
 
+  elementImage.addEventListener("click", () => onImagePreview(data));
   element
     .querySelector(".element__like-button")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like-butto n_active");
-    });
+    .addEventListener("click", (evt) =>
+      evt.target.classList.toggle("element__like-button_active")
+    );
 
   element
     .querySelector(".element__delete-button")
-    .addEventListener("click", function () {
-      element.remove();
-    });
+    .addEventListener("click", () => element.remove());
 
   return element;
 }
 
 initialCards.forEach((card) => {
-  elementsList.prepend(createCard(card));
+  elementsList.append(createCard(card));
 });
 
 function togglePopup(modal) {
@@ -90,10 +91,16 @@ function handleProfileFormSubmit(event) {
   togglePopup(popupEditProfile);
 }
 
+function onImagePreview(card) {
+  const popupImage = document.querySelector(".popup__image");
+  popupImage.src = card.link;
+  togglePopup(popupPreview);
+}
+
 // Event Handlers
-profileEditButton.addEventListener("click", () =>
-  togglePopup(popupEditProfile)
-);
+profileEditButton.addEventListener("click", (card) => {
+  togglePopup(popupEditProfile);
+});
 
 closeProfileButton.addEventListener("click", () =>
   togglePopup(popupEditProfile)
@@ -105,12 +112,4 @@ closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
-function handleCardFormSubmit(event) {
-  event.preventDefault();
-  cardFormImageInput.value = element__image.src;
-  cardFormTitleInput.value = element__text.textContent;
-  togglePopup(pro);
-  popupAddCard.classList.remove("popup_opened");
-}
-
-cardForm.addEventListener("submit", handleCardFormSubmit);
+closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
