@@ -45,7 +45,7 @@
         <div class="popup__container">
           <button
             type="button"
-            class="popup__close-button popup__close-button_type_edit-profile"
+            class="popup__close-button popup__close_profile"
             aria-label="Close button"
           ></button>
           <form name="profile">
@@ -70,7 +70,7 @@
         <div class="popup__container">
           <button
             type="button"
-            class="popup__close-button popup__close-button_type_add-card"
+            class="popup__close-button popup__close_add-card"
             aria-label="Close button"
           ></button>
           <form name="card">
@@ -82,7 +82,7 @@
               placeholder="Title"
             />
             <input
-              type="text"
+              type="url"
               name="imageLink"
               class="popup__input popup__input_type_image-link"
               placeholder="Image Link"
@@ -98,14 +98,14 @@
       </section>
 
       <!-- Cards Template -->
-      <template id="elements">
+      <template id="cards-template">
         <li class="element">
           <button
             class="element__delete-button"
             aria-label="Delete button"
             type="button"
           ></button>
-          <img class="element__image" />
+          <div class="element__image"></div>
           <div class="element__flex">
             <h2 class="element__text"></h2>
             <button type="button" class="element__like-button" />
