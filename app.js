@@ -36,26 +36,30 @@ const profileFormOccupationInput = profileForm.elements.occupation;
 
 // add card properties
 const cardForm = document.forms.card;
-const cardFormTitleInput = profileForm.elements.title;
-const cardFormImageInput = profileForm.elements.imageLink;
+const cardFormTitleInput = cardForm.elements.title;
+const cardFormImageInput = cardForm.elements.imageLink;
 
-// Popups
+// Profile Edit Popup
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const closeProfileButton = document.querySelector(".popup__close_profile");
 
+// Add New Card Popup
 const addCardButton = document.querySelector(".profile__add-button");
 const popupAddCard = document.querySelector(".popup_type_add-card");
 const closeCardButton = document.querySelector(".popup__close_add-card");
 
+// Preview Card Popup
 const popupPreview = document.querySelector(".popup_type_preview");
 const closePreviewButton = document.querySelector(".popup__close_preview");
 
+// Parent of Card Template
 const elementsList = document.querySelector(".elements__list");
 
 function createCard(data) {
   const elements = document.querySelector("#cards-template").content;
   const element = elements.querySelector(".element").cloneNode(true);
+
   const elementImage = element.querySelector(".element__image");
   elementImage.style.backgroundImage = `url(${data.link})`;
   element.querySelector(".element__text").textContent = data.name;
@@ -74,9 +78,18 @@ function createCard(data) {
   return element;
 }
 
-initialCards.forEach((card) => {
-  elementsList.append(createCard(card));
-});
+// display cards
+function displayCard(card) {
+  elementsList.prepend(createCard(card));
+}
+
+initialCards.forEach((card) => displayCard(card));
+
+function onImagePreview(card) {
+  const popupImage = document.querySelector(".popup__image");
+  popupImage.src = card.link;
+  togglePopup(popupPreview);
+}
 
 function togglePopup(modal) {
   profileFormNameInput.value = profileName.textContent;
@@ -91,10 +104,14 @@ function handleProfileFormSubmit(event) {
   togglePopup(popupEditProfile);
 }
 
-function onImagePreview(card) {
-  const popupImage = document.querySelector(".popup__image");
-  popupImage.src = card.link;
-  togglePopup(popupPreview);
+function handleNewCardFormSubmit(event) {
+  event.preventDefault();
+  const data = {
+    name: cardFormTitleInput.value,
+    link: cardFormImageInput.value,
+  };
+  displayCard(data);
+  togglePopup(popupAddCard);
 }
 
 // Event Handlers
@@ -107,9 +124,8 @@ closeProfileButton.addEventListener("click", () =>
 );
 
 addCardButton.addEventListener("click", () => togglePopup(popupAddCard));
-
 closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
+closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
-closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
+cardForm.addEventListener("submit", handleNewCardFormSubmit);
