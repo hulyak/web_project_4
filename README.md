@@ -1,6 +1,8 @@
 # Project 4: Around The U.S.
 
-This is an interactive page where users can add, remove, or like their travel photos. Users can edit their profile with the Edit Profile popup box.
+This is an interactive page where users can add, remove, or like their travel photos. 
+
+Users can edit their profile with the Edit Profile Modal, add new places to the list, remove the card from their list. 
 
 ## [See it live](https://hulyak.github.io/web_project_4/)!
 
