@@ -87,13 +87,18 @@ initialCards.forEach((card) => displayCard(card));
 
 function onImagePreview(card) {
   const popupImage = document.querySelector(".popup__image");
+  const popupTitle = document.querySelector(".popup__preview-title");
   popupImage.src = card.link;
+  popupTitle.alt = card.name;
+  popupTitle.textContent = card.name;
   togglePopup(popupPreview);
 }
 
 function togglePopup(modal) {
-  profileFormNameInput.value = profileName.textContent;
-  profileFormOccupationInput.value = profileOccupation.textContent;
+  if (!modal.classList.contains("popup_opened")) {
+    profileFormNameInput.value = profileName.textContent;
+    profileFormOccupationInput.value = profileOccupation.textContent;
+  }
   modal.classList.toggle("popup_opened");
 }
 
