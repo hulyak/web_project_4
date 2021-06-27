@@ -42,16 +42,20 @@ const cardFormImageInput = cardForm.elements.imageLink;
 // Profile Edit Popup
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
-const closeProfileButton = document.querySelector(".popup__close_profile");
+const closeProfileButton = document.querySelector(
+  ".popup__close-button_profile"
+);
 
 // Add New Card Popup
 const addCardButton = document.querySelector(".profile__add-button");
 const popupAddCard = document.querySelector(".popup_type_add-card");
-const closeCardButton = document.querySelector(".popup__close_add-card");
+const closeCardButton = document.querySelector(".popup__close-button_add-card");
 
 // Preview Card Popup
 const popupPreview = document.querySelector(".popup_type_preview");
-const closePreviewButton = document.querySelector(".popup__close_preview");
+const closePreviewButton = document.querySelector(
+  ".popup__close-button_preview"
+);
 
 // Parent of Card Template
 const elementsList = document.querySelector(".elements__list");
