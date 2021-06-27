@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-
 // profile properties
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
@@ -56,12 +29,14 @@ const popupPreview = document.querySelector(".popup_type_preview");
 const closePreviewButton = document.querySelector(
   ".popup__close-button_preview"
 );
+const popupImage = document.querySelector(".popup__image");
+const popupTitle = document.querySelector(".popup__preview-title");
 
 // Parent of Card Template
 const elementsList = document.querySelector(".elements__list");
+const elements = document.querySelector("#cards-template").content;
 
 function createCard(data) {
-  const elements = document.querySelector("#cards-template").content;
   const element = elements.querySelector(".element").cloneNode(true);
 
   const elementImage = element.querySelector(".element__image");
@@ -90,8 +65,6 @@ function displayCard(card) {
 initialCards.forEach((card) => displayCard(card));
 
 function onImagePreview(card) {
-  const popupImage = document.querySelector(".popup__image");
-  const popupTitle = document.querySelector(".popup__preview-title");
   popupImage.src = card.link;
   popupTitle.alt = card.name;
   popupTitle.textContent = card.name;
@@ -99,11 +72,15 @@ function onImagePreview(card) {
 }
 
 function togglePopup(modal) {
-  if (!modal.classList.contains("popup_opened")) {
+  modal.classList.toggle("popup_opened");
+}
+
+function toggleEditProfilePopup() {
+  if (!popupEditProfile.classList.contains("popup_opened")) {
     profileFormNameInput.value = profileName.textContent;
     profileFormOccupationInput.value = profileOccupation.textContent;
   }
-  modal.classList.toggle("popup_opened");
+  togglePopup(popupEditProfile);
 }
 
 function handleProfileFormSubmit(event) {
@@ -121,11 +98,13 @@ function handleNewCardFormSubmit(event) {
   };
   displayCard(data);
   togglePopup(popupAddCard);
+  cardFormTitleInput.value = "";
+  cardFormImageInput.value = "";
 }
 
 // Event Handlers
-profileEditButton.addEventListener("click", (card) => {
-  togglePopup(popupEditProfile);
+profileEditButton.addEventListener("click", () => {
+  toggleEditProfilePopup();
 });
 
 closeProfileButton.addEventListener("click", () =>
