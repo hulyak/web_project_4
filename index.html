@@ -41,7 +41,7 @@
         ></button>
       </section>
 
-      <!-- Edit profile Popup -->
+      <!-- Edit profile Popup Form -->
       <section class="popup popup_type_edit-profile">
         <div class="popup__container">
           <button
@@ -49,26 +49,38 @@
             class="popup__close-button popup__close-button_profile"
             aria-label="Close button"
           ></button>
-          <form name="profile">
+          <form name="profile" class="popup__form" novalidate>
             <h2 class="popup__title">Edit Profile</h2>
             <input
               type="text"
               name="name"
               class="popup__input popup__input_type_name"
               placeholder="name"
+              minlength="2"
+              maxlength="40"
+              id="name-input"
+              required
             />
+            <span class="popup__input-error name-input-error"></span>
             <input
               type="text"
               name="occupation"
               class="popup__input popup__input_type_job"
               placeholder="occupation"
+              minlength="2"
+              maxlength="200"
+              id="job-input"
+              required
             />
-            <button type="submit" class="popup__submit-button">Save</button>
+            <span class="popup__input-error job-input-error"></span>
+            <button type="submit" class="popup__submit-button popup__button">
+              Save
+            </button>
           </form>
         </div>
       </section>
 
-      <!-- Add Card Popup -->
+      <!-- Add Card Popup Form -->
       <section class="popup popup_type_add-card">
         <div class="popup__container">
           <button
@@ -76,21 +88,31 @@
             class="popup__close-button popup__close-button_add-card"
             aria-label="Close button"
           ></button>
-          <form name="card">
+          <form name="card" class="popup__form" novalidate>
             <h2 class="popup__title">New Place</h2>
             <input
               type="text"
               name="title"
               class="popup__input popup__input_type_title"
               placeholder="Title"
+              required
+              minlength="1"
+              maxlength="30"
+              id="title-input"
             />
+            <span class="popup__input-error title-input-error"></span>
             <input
               type="url"
               name="imageLink"
               class="popup__input popup__input_type_image-link"
               placeholder="Image Link"
+              required
+              id="url-input"
             />
-            <button type="submit" class="popup__submit-button">Create</button>
+            <span class="popup__input-error url-input-error"></span>
+            <button type="submit" class="popup__submit-button popup__button">
+              Create
+            </button>
           </form>
         </div>
       </section>
@@ -133,6 +155,7 @@
       <p class="footer__text">&copy; 2021 Around the U.S.</p>
     </footer>
     <script src="scripts/initial-cards.js"></script>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/index.js"></script>
   </body>
 </html>
