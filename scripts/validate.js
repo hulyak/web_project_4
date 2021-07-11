@@ -16,7 +16,7 @@ const hideInputError = (
   { errorClass, inputErrorClass, ...rest }
 ) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass);
+  errorElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = "";
 };
@@ -29,30 +29,19 @@ const checkInputValidity = (formElement, inputElement, rest) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => !inputElement.validity.valid);
-};
+const hasValidInput = (inputList) =>
+  inputList.every((inputElement) => inputElement.validity.valid);
 
 const toggleButtonState = (
   inputList,
   buttonElement,
   { inactiveButtonClass, ...rest }
 ) => {
-  console.log(hasInvalidInput(inputList));
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
-  } else {
+  if (hasValidInput(inputList)) {
     buttonElement.classList.remove(inactiveButtonClass);
+  } else {
+    buttonElement.classList.add(inactiveButtonClass);
   }
-};
-
-enableValidation = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
 };
 
 function enableValidation({
@@ -62,6 +51,7 @@ function enableValidation({
   ...rest
 }) {
   const formList = [...document.querySelectorAll(formSelector)];
+
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
@@ -71,13 +61,22 @@ function enableValidation({
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
     toggleButtonState(inputList, buttonElement);
-
+    // validate all inputs
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         checkInputValidity(formElement, inputElement, rest);
-        // check  whenever any field's input is changed
-        toggleButtonState(inputList, buttonElement);
+        // check whenever any field's input is changed
+        toggleButtonState(inputList, buttonElement, rest);
       });
     });
   });
 }
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+});
