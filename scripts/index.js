@@ -68,11 +68,15 @@ function onImagePreview(card) {
   popupImage.src = card.link;
   popupTitle.alt = card.name;
   popupTitle.textContent = card.name;
-  togglePopup(popupPreview);
+  openPopup(popupPreview);
 }
 
-function togglePopup(modal) {
-  modal.classList.toggle("popup_opened");
+function openPopup(modal) {
+  modal.classList.add("popup_opened");
+}
+
+function closePopup(modal) {
+  modal.classList.remove("popup_opened");
 }
 
 function toggleEditProfilePopup() {
@@ -80,7 +84,7 @@ function toggleEditProfilePopup() {
     profileFormNameInput.value = profileName.textContent;
     profileFormOccupationInput.value = profileOccupation.textContent;
   }
-  togglePopup(popupEditProfile);
+  openPopup(popupEditProfile);
 }
 
 function handleProfileFormSubmit(event) {
@@ -108,12 +112,35 @@ profileEditButton.addEventListener("click", () => {
 });
 
 closeProfileButton.addEventListener("click", () =>
-  togglePopup(popupEditProfile)
+  closePopup(popupEditProfile)
 );
 
-addCardButton.addEventListener("click", () => togglePopup(popupAddCard));
-closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
-closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
+addCardButton.addEventListener("click", () => openPopup(popupAddCard));
+closeCardButton.addEventListener("click", () => closePopup(popupAddCard));
+closePreviewButton.addEventListener("click", () => closePopup(popupPreview));
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 cardForm.addEventListener("submit", handleNewCardFormSubmit);
+
+// close the Popup by Clicking on the Overlay
+function handleClosePopup(e) {
+  if (
+    (e) =>
+      e.target === popupEditProfile ||
+      e.target === popupAddCard ||
+      e.target === popupPreview
+  ) {
+    closePopup(e.target);
+  }
+}
+
+window.addEventListener("click", handleClosePopup);
+
+// close the Popup by Pressing Escape key
+function handleEscKey(e) {
+  if (e.key === "Escape") {
+    closePopup(e.target);
+  }
+}
+
+window.addEventListener("keydown", handleEscKey);
