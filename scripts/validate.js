@@ -1,13 +1,12 @@
 const showInputError = (
   formElement,
   inputElement,
-  errorMessage,
   { errorClass, inputErrorClass, ...rest }
 ) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
   errorElement.classList.add(errorClass);
-  errorElement.textContent = errorMessage;
+  errorElement.textContent = inputElement.validationMessage;
 };
 
 const hideInputError = (
@@ -16,16 +15,16 @@ const hideInputError = (
   { errorClass, inputErrorClass, ...rest }
 ) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.classList.remove(inputErrorClass);
+  inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = "";
 };
 
 const checkInputValidity = (formElement, inputElement, rest) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, rest);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, rest);
   }
 };
 
@@ -37,7 +36,10 @@ const toggleButtonState = (
   buttonElement,
   { inactiveButtonClass, ...rest }
 ) => {
-  if (hasValidInput(inputList)) {
+  const isValid = inputList.every(
+    (inputElement) => inputElement.validity.valid
+  );
+  if (isValid) {
     buttonElement.classList.remove(inactiveButtonClass);
   } else {
     buttonElement.classList.add(inactiveButtonClass);
@@ -60,7 +62,7 @@ function enableValidation({
     const inputList = [...formElement.querySelectorAll(inputSelector)];
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, rest);
     // validate all inputs
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
@@ -78,5 +80,5 @@ enableValidation({
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  errorClass: "popup__input-error_visible",
 });

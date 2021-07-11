@@ -51,31 +51,40 @@
           ></button>
           <form name="profile" class="popup__form" novalidate>
             <h2 class="popup__title">Edit Profile</h2>
-            <input
-              type="text"
-              name="name"
-              class="popup__input popup__input_type_name"
-              placeholder="name"
-              minlength="2"
-              maxlength="40"
-              id="name-input"
-              required
-            />
-            <span class="popup__input-error name-input-error"></span>
-            <input
-              type="text"
-              name="occupation"
-              class="popup__input popup__input_type_job"
-              placeholder="occupation"
-              minlength="2"
-              maxlength="200"
-              id="job-input"
-              required
-            />
-            <span class="popup__input-error job-input-error"></span>
-            <button type="submit" class="popup__submit-button popup__button">
-              Save
-            </button>
+            <label class="popup__form-field">
+              <input
+                type="text"
+                name="name"
+                class="popup__input popup__input_type_name"
+                placeholder="name"
+                minlength="2"
+                maxlength="40"
+                id="name-input"
+                required
+              />
+              <span
+                class="popup__input-error name-input-error"
+                aria-hidden="true"
+              ></span>
+            </label>
+            <label class="popup__form-field">
+              <input
+                type="text"
+                name="occupation"
+                class="popup__input popup__input_type_job"
+                placeholder="occupation"
+                minlength="2"
+                maxlength="200"
+                id="job-input"
+                required
+              />
+              <span
+                class="popup__input-error job-input-error"
+                aria-hidden="true"
+              ></span>
+            </label>
+
+            <button type="submit" class="popup__button">Save</button>
           </form>
         </div>
       </section>
@@ -90,29 +99,39 @@
           ></button>
           <form name="card" class="popup__form" novalidate>
             <h2 class="popup__title">New Place</h2>
-            <input
-              type="text"
-              name="title"
-              class="popup__input popup__input_type_title"
-              placeholder="Title"
-              required
-              minlength="1"
-              maxlength="30"
-              id="title-input"
-            />
-            <span class="popup__input-error title-input-error"></span>
-            <input
-              type="url"
-              name="imageLink"
-              class="popup__input popup__input_type_image-link"
-              placeholder="Image Link"
-              required
-              id="url-input"
-            />
-            <span class="popup__input-error url-input-error"></span>
-            <button type="submit" class="popup__submit-button popup__button">
-              Create
-            </button>
+            <label class="popup__form-field">
+              <input
+                type="text"
+                name="title"
+                class="popup__input popup__input_type_title"
+                placeholder="Title"
+                required
+                minlength="1"
+                maxlength="30"
+                id="title-input"
+              />
+              <span
+                class="popup__input-error title-input-error"
+                aria-hidden="true"
+              ></span>
+            </label>
+
+            <label class="popup__form-field">
+              <input
+                type="url"
+                name="imageLink"
+                class="popup__input popup__input_type_image-link"
+                placeholder="Image Link"
+                required
+                id="url-input"
+              />
+              <span
+                class="popup__input-error url-input-error"
+                aria-hidden="true"
+              ></span>
+            </label>
+
+            <button type="submit" class="popup__button">Create</button>
           </form>
         </div>
       </section>

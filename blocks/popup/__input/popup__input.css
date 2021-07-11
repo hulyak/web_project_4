@@ -1,21 +1,14 @@
 .popup__input {
-  max-width: 358px;
-  width: 100%;
-  min-height: 26px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 0 36px 29px;
   font-family: inherit;
   font-size: 14px;
   line-height: 17px;
   outline: none;
   display: block;
   color: #000;
-  position: relative;
-}
-
-.popup__input:last-of-type {
-  margin-bottom: 48px;
+  max-width: 358px;
+  width: 100%;
 }
 
 @media only screen and (max-width: 515px) {
@@ -27,9 +20,5 @@
 @media only screen and (max-width: 430px) {
   .popup__input {
     max-width: 238px;
-    margin: 0 22px 30px;
-  }
-  .popup__input:last-of-type {
-    margin-bottom: 46px;
   }
 }
