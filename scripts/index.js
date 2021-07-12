@@ -125,10 +125,9 @@ cardForm.addEventListener("submit", handleNewCardFormSubmit);
 // close the Popup by Clicking on the Overlay
 function handleClosePopup(e) {
   if (
-    (e) =>
-      e.target === popupEditProfile ||
-      e.target === popupAddCard ||
-      e.target === popupPreview
+    e.target === popupEditProfile ||
+    e.target === popupAddCard ||
+    e.target === popupPreview
   ) {
     closePopup(e.target);
   }
@@ -139,7 +138,9 @@ window.addEventListener("click", handleClosePopup);
 // close the Popup by Pressing Escape key
 function handleEscKey(e) {
   if (e.key === "Escape") {
-    closePopup(e.target);
+    closePopup(popupPreview);
+    closePopup(popupAddCard);
+    closePopup(popupEditProfile);
   }
 }
 
