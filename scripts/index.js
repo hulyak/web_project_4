@@ -5,7 +5,7 @@ const popupAddCard = document.querySelector(".popup_type_add-card");
 const popupPreview = document.querySelector(".popup_type_preview");
 
 // Edit Profile Form
-const profileForm = document.querySelector(".form_type_edit-profile");
+const profileForm = document.querySelector(".popup__form_type_edit-profile");
 const profileFormNameInput = profileForm.querySelector(
   ".popup__input_type_name"
 );
@@ -29,7 +29,7 @@ const closeCardButton = document.querySelector(".popup__close-button_add-card");
 const addCardButton = document.querySelector(".profile__add-button");
 
 // Add New Card Form
-const cardForm = document.querySelector(".form_type_add-card");
+const cardForm = document.querySelector(".popup__form_type_add-card");
 const cardFormTitleInput = cardForm.querySelector(".popup__input_type_title");
 const cardFormImageInput = cardForm.querySelector(
   ".popup__input_type_image-link"
