@@ -49,7 +49,11 @@
             class="popup__close-button popup__close-button_profile"
             aria-label="Close button"
           ></button>
-          <form name="profile" class="popup__form" novalidate>
+          <form
+            name="profile"
+            class="popup__form form_type_edit-profile"
+            novalidate
+          >
             <h2 class="popup__title">Edit Profile</h2>
             <label class="popup__form-field">
               <input
@@ -91,7 +95,7 @@
             class="popup__close-button popup__close-button_add-card"
             aria-label="Close button"
           ></button>
-          <form name="card" class="popup__form" novalidate>
+          <form name="card" class="popup__form form_type_add-card" novalidate>
             <h2 class="popup__title">New Place</h2>
             <label class="popup__form-field">
               <input
@@ -153,7 +157,7 @@
           <div class="element__image"></div>
           <div class="element__flex">
             <h2 class="element__text"></h2>
-            <button type="button" class="element__like-button" />
+            <button type="button" class="element__like-button"></button>
           </div>
         </li>
       </template>
