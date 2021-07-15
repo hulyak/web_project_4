@@ -28,21 +28,18 @@ const checkInputValidity = (formElement, inputElement, rest) => {
   }
 };
 
-const hasValidInput = (inputList) =>
-  inputList.every((inputElement) => inputElement.validity.valid);
+const hasInvalidInput = (inputList) =>
+  inputList.some((inputElement) => !inputElement.validity.valid);
 
 const toggleButtonState = (
   inputList,
   buttonElement,
   { inactiveButtonClass, ...rest }
 ) => {
-  const isValid = inputList.every(
-    (inputElement) => inputElement.validity.valid
-  );
-  if (isValid) {
-    buttonElement.classList.remove(inactiveButtonClass);
-  } else {
+  if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
+  } else {
+    buttonElement.classList.remove(inactiveButtonClass);
   }
 };
 

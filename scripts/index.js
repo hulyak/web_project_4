@@ -77,31 +77,6 @@ function onImagePreview(card) {
   togglePopup(popupPreview);
 }
 
-function togglePopup(modal) {
-  modal.classList.toggle("popup_opened");
-  if (modal.classList.contains("popup_opened")) {
-    document.addEventListener("keydown", handleEscKey);
-  } else {
-    document.removeEventListener("keydown", handleEscKey);
-  }
-}
-
-// close the Popup by Clicking on the Overlay
-const handleOutsideClick = (e) => {
-  if (!e.target.classList.contains("popup_opened")) {
-    return;
-  }
-  togglePopup(e.target);
-};
-
-// close the Popup by Pressing Escape key
-function handleEscKey(e) {
-  if (e.key === "Escape") {
-    const popupOpened = document.querySelector(".popup_opened");
-    togglePopup(popupOpened);
-  }
-}
-
 function toggleEditProfilePopup() {
   if (!popupEditProfile.classList.contains("popup_opened")) {
     profileFormNameInput.value = profileName.textContent;
@@ -130,6 +105,38 @@ function handleNewCardFormSubmit(event) {
   cardFormImageInput.value = "";
 }
 
+function togglePopup(modal) {
+  modal.classList.toggle("popup_opened");
+  // added these event handlers when popup opens and remove it when popup closes
+  if (modal.classList.contains("popup_opened")) {
+    document.addEventListener("keydown", handleEscKey);
+  } else {
+    document.removeEventListener("keydown", handleEscKey);
+  }
+}
+
+// close the Popup by Clicking on the Overlay
+function handleOutsideClick() {
+  popups.forEach((popup) => {
+    popup.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("popup_opened")) {
+        return;
+      }
+      togglePopup(e.target);
+    });
+  });
+}
+
+handleOutsideClick();
+
+// close the Popup by Pressing Escape key
+function handleEscKey(e) {
+  if (e.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
+    togglePopup(popup);
+  }
+}
+
 // Event Handlers
 profileEditButton.addEventListener("click", () => {
   toggleEditProfilePopup();
@@ -138,11 +145,6 @@ profileEditButton.addEventListener("click", () => {
 addCardButton.addEventListener("click", () => togglePopup(popupAddCard));
 cardForm.addEventListener("submit", handleNewCardFormSubmit);
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
-popups.forEach((popup) => {
-  popup.addEventListener("click", handleEscKey);
-  popup.addEventListener("click", handleOutsideClick);
-});
 
 closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
 closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
