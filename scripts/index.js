@@ -100,34 +100,28 @@ function handleNewCardFormSubmit(event) {
   };
   displayCard(data);
   togglePopup(popupAddCard);
-  // cardForm.reset();
-  cardFormTitleInput.value = "";
-  cardFormImageInput.value = "";
+  cardForm.reset();
 }
 
 function togglePopup(modal) {
   modal.classList.toggle("popup_opened");
-  // added these event handlers when popup opens and remove it when popup closes
+  // add event handlers when popup opens and remove it when popup closes
   if (modal.classList.contains("popup_opened")) {
     document.addEventListener("keydown", handleEscKey);
+    modal.addEventListener("click", () => handleOutsideClick(modal));
   } else {
     document.removeEventListener("keydown", handleEscKey);
+    modal.removeEventListener("click", () => handleOutsideClick(modal));
   }
 }
 
 // close the Popup by Clicking on the Overlay
-function handleOutsideClick() {
-  popups.forEach((popup) => {
-    popup.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("popup_opened")) {
-        return;
-      }
-      togglePopup(e.target);
-    });
+function handleOutsideClick(modal) {
+  modal.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("popup_opened")) return;
+    togglePopup(e.target);
   });
 }
-
-handleOutsideClick();
 
 // close the Popup by Pressing Escape key
 function handleEscKey(e) {
