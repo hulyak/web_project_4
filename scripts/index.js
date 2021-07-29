@@ -1,32 +1,35 @@
-// Popups
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
+
 const popups = document.querySelectorAll(".popup");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddCard = document.querySelector(".popup_type_add-card");
 const popupPreview = document.querySelector(".popup_type_preview");
-
-// Edit Profile Form
-const profileForm = document.querySelector(".popup__form_type_edit-profile");
-const profileFormNameInput = profileForm.querySelector(
-  ".popup__input_type_name"
-);
-const profileFormOccupationInput = profileForm.querySelector(
-  ".popup__input_type_job"
-);
-// profile properties
-const profileName = document.querySelector(".profile__name");
-const profileOccupation = document.querySelector(".profile__occupation");
-
-// Buttons
-const profileEditButton = document.querySelector(".profile__edit-button");
 const popupCloseButton = document.querySelectorAll(".popup__close-button");
-const closeProfileButton = document.querySelector(
-  ".popup__close-button_profile"
-);
-const closePreviewButton = document.querySelector(
-  ".popup__close-button_preview"
-);
-const closeCardButton = document.querySelector(".popup__close-button_add-card");
-const addCardButton = document.querySelector(".profile__add-button");
 
 // Add New Card Form
 const cardForm = document.querySelector(".popup__form_type_add-card");
@@ -42,6 +45,30 @@ const popupTitle = document.querySelector(".popup__preview-title");
 // Parent of Card Template
 const elementsList = document.querySelector(".elements__list");
 const elements = document.querySelector("#cards-template").content;
+
+// Edit Profile Form
+const profileForm = document.querySelector(".popup__form_type_edit-profile");
+const profileFormNameInput = profileForm.querySelector(
+  ".popup__input_type_name"
+);
+const profileFormOccupationInput = profileForm.querySelector(
+  ".popup__input_type_job"
+);
+// profile properties
+const profileName = document.querySelector(".profile__name");
+const profileOccupation = document.querySelector(".profile__occupation");
+
+// Buttons
+const profileEditButton = document.querySelector(".profile__edit-button");
+
+const closeProfileButton = document.querySelector(
+  ".popup__close-button_profile"
+);
+const closePreviewButton = document.querySelector(
+  ".popup__close-button_preview"
+);
+const closeCardButton = document.querySelector(".popup__close-button_add-card");
+const addCardButton = document.querySelector(".profile__add-button");
 
 function createCard(data) {
   const element = elements.querySelector(".element").cloneNode(true);
@@ -62,6 +89,12 @@ function createCard(data) {
 
   return element;
 }
+
+// initialCards.forEach((item) => {
+//   const card = new Card(item, ".element");
+//   const cardElement = card.generateCard();
+//   elementsList.prepend(cardElement);
+// });
 
 // display cards
 function displayCard(card) {
