@@ -35,7 +35,7 @@ class FormValidator {
   }
 
   _hasInvalidInput(inputList) {
-    inputList.some((inputElement) => !inputElement.validity.valid);
+    return inputList.some((inputElement) => !inputElement.validity.valid);
   }
 
   _toggleButtonState(inputList, buttonElement) {
