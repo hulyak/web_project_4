@@ -136,8 +136,10 @@ closeProfileButton.addEventListener("click", () =>
   togglePopup(popupEditProfile)
 );
 
-const editFormElement = document.querySelector(".popup_type_edit-profile");
-const cardFormElement = document.querySelector(".popup__form_type_add-card ");
+const editFormElement = document.querySelector(
+  ".popup__form_type_edit-profile"
+);
+const cardFormElement = document.querySelector(".popup__form_type_add-card");
 
 const defaultFormConfig = {
   inputSelector: ".popup__input",
@@ -148,7 +150,6 @@ const defaultFormConfig = {
 };
 
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
-
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormElement);
 
 editFormValidator.enableValidation();
