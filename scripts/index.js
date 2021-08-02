@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,11 +28,8 @@ const initialCards = [
   },
 ];
 
-const popups = document.querySelectorAll(".popup");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddCard = document.querySelector(".popup_type_add-card");
-const popupPreview = document.querySelector(".popup_type_preview");
-const popupCloseButton = document.querySelectorAll(".popup__close-button");
 
 // Add New Card Form
 const cardForm = document.querySelector(".popup__form_type_add-card");
@@ -37,14 +37,6 @@ const cardFormTitleInput = cardForm.querySelector(".popup__input_type_title");
 const cardFormImageInput = cardForm.querySelector(
   ".popup__input_type_image-link"
 );
-
-// Preview Card Popup
-const popupImage = document.querySelector(".popup__image");
-const popupTitle = document.querySelector(".popup__preview-title");
-
-// Parent of Card Template
-const elementsList = document.querySelector(".elements__list");
-const elements = document.querySelector("#cards-template").content;
 
 // Edit Profile Form
 const profileForm = document.querySelector(".popup__form_type_edit-profile");
@@ -64,51 +56,17 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const closeProfileButton = document.querySelector(
   ".popup__close-button_profile"
 );
-const closePreviewButton = document.querySelector(
-  ".popup__close-button_preview"
-);
+
 const closeCardButton = document.querySelector(".popup__close-button_add-card");
 const addCardButton = document.querySelector(".profile__add-button");
 
-function createCard(data) {
-  const element = elements.querySelector(".element").cloneNode(true);
-  const elementImage = element.querySelector(".element__image");
-  elementImage.style.backgroundImage = `url(${data.link})`;
-  element.querySelector(".element__text").textContent = data.name;
-
-  elementImage.addEventListener("click", () => onImagePreview(data));
-  element
-    .querySelector(".element__like-button")
-    .addEventListener("click", (evt) =>
-      evt.target.classList.toggle("element__like-button_active")
-    );
-
-  element
-    .querySelector(".element__delete-button")
-    .addEventListener("click", () => element.remove());
-
-  return element;
-}
-
-// initialCards.forEach((item) => {
-//   const card = new Card(item, ".element");
-//   const cardElement = card.generateCard();
-//   elementsList.prepend(cardElement);
-// });
-
 // display cards
-function displayCard(card) {
-  elementsList.prepend(createCard(card));
+function displayCard(item) {
+  const card = new Card(item, "#cards-template");
+  document.querySelector(".elements__list").prepend(card.generateCard());
 }
 
-initialCards.forEach((card) => displayCard(card));
-
-function onImagePreview(card) {
-  popupImage.src = card.link;
-  popupTitle.alt = card.name;
-  popupTitle.textContent = card.name;
-  togglePopup(popupPreview);
-}
+initialCards.forEach((item) => displayCard(item));
 
 function toggleEditProfilePopup() {
   if (!popupEditProfile.classList.contains("popup_opened")) {
@@ -174,7 +132,24 @@ cardForm.addEventListener("submit", handleNewCardFormSubmit);
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
-closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
 closeProfileButton.addEventListener("click", () =>
   togglePopup(popupEditProfile)
 );
+
+const editFormElement = document.querySelector(".popup_type_edit-profile");
+const cardFormElement = document.querySelector(".popup__form_type_add-card ");
+
+const defaultFormConfig = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_visible",
+};
+
+const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
+
+const cardFormValidator = new FormValidator(defaultFormConfig, cardFormElement);
+
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
