@@ -1,37 +1,13 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
+import initialCards from "./initial-cards.js";
+import togglePopup from "../utils/utils.js";
 
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddCard = document.querySelector(".popup_type_add-card");
 
 // Add New Card Form
+const cardList = document.querySelector(".elements__list");
 const cardForm = document.querySelector(".popup__form_type_add-card");
 const cardFormTitleInput = cardForm.querySelector(".popup__input_type_title");
 const cardFormImageInput = cardForm.querySelector(
@@ -56,17 +32,24 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const closeProfileButton = document.querySelector(
   ".popup__close-button_profile"
 );
+const closePreviewButton = document.querySelector(
+  ".popup__close-button_preview"
+);
 
 const closeCardButton = document.querySelector(".popup__close-button_add-card");
 const addCardButton = document.querySelector(".profile__add-button");
 
-// display cards
-function displayCard(item) {
+function createCard(item) {
   const card = new Card(item, "#cards-template");
-  document.querySelector(".elements__list").prepend(card.generateCard());
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
-initialCards.forEach((item) => displayCard(item));
+function displayCard(card) {
+  cardList.prepend(createCard(card));
+}
+
+initialCards.forEach((card) => displayCard(card));
 
 function toggleEditProfilePopup() {
   if (!popupEditProfile.classList.contains("popup_opened")) {
@@ -94,34 +77,6 @@ function handleNewCardFormSubmit(event) {
   cardForm.reset();
 }
 
-function togglePopup(modal) {
-  modal.classList.toggle("popup_opened");
-  // add event handlers when popup opens and remove it when popup closes
-  if (modal.classList.contains("popup_opened")) {
-    document.addEventListener("keydown", handleEscKey);
-    modal.addEventListener("click", () => handleOutsideClick(modal));
-  } else {
-    document.removeEventListener("keydown", handleEscKey);
-    modal.removeEventListener("click", () => handleOutsideClick(modal));
-  }
-}
-
-// close the Popup by Clicking on the Overlay
-function handleOutsideClick(modal) {
-  modal.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("popup_opened")) return;
-    togglePopup(e.target);
-  });
-}
-
-// close the Popup by Pressing Escape key
-function handleEscKey(e) {
-  if (e.key === "Escape") {
-    const popup = document.querySelector(".popup_opened");
-    togglePopup(popup);
-  }
-}
-
 // Event Handlers
 profileEditButton.addEventListener("click", () => {
   toggleEditProfilePopup();
@@ -135,6 +90,8 @@ closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
 closeProfileButton.addEventListener("click", () =>
   togglePopup(popupEditProfile)
 );
+
+closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
 
 const editFormElement = document.querySelector(
   ".popup__form_type_edit-profile"

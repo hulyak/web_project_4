@@ -1,38 +1,9 @@
+import togglePopup from "../utils/utils.js";
+
 // Preview Card Popup
 const popupImage = document.querySelector(".popup__image");
 const popupTitle = document.querySelector(".popup__preview-title");
 const popupPreview = document.querySelector(".popup_type_preview");
-const closePreviewButton = document.querySelector(
-  ".popup__close-button_preview"
-);
-
-closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
-
-function togglePopup(modal) {
-  modal.classList.toggle("popup_opened");
-  if (modal.classList.contains("popup_opened")) {
-    document.addEventListener("keydown", handleEscKey);
-    modal.addEventListener("click", () => handleOutsideClick(modal));
-  } else {
-    document.removeEventListener("keydown", handleEscKey);
-    modal.removeEventListener("click", () => handleOutsideClick(modal));
-  }
-}
-
-function handleOutsideClick(modal) {
-  modal.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("popup_opened")) return;
-    togglePopup(e.target);
-  });
-}
-
-// close the Popup by Pressing Escape key
-function handleEscKey(e) {
-  if (e.key === "Escape") {
-    const popup = document.querySelector(".popup_opened");
-    togglePopup(popup);
-  }
-}
 
 class Card {
   constructor(data, cardSelector) {
