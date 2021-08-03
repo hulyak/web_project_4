@@ -50,7 +50,7 @@ class Card {
 
   _handleImagePreview() {
     popupImage.src = this._link;
-    popupTitle.alt = this._name;
+    popupImage.alt = this._name;
     popupTitle.textContent = this._name;
     togglePopup(popupPreview);
   }
@@ -81,7 +81,9 @@ class Card {
     const deleteButton = this._element.querySelector(".element__delete-button");
     const popupImagePreview = this._element.querySelector(".element__image");
 
-    likeButton.addEventListener("click", () => this._handleLikeButtonToggle());
+    likeButton.addEventListener("click", (evt) =>
+      this._handleLikeButtonToggle(evt)
+    );
     deleteButton.addEventListener("click", () => this._handleDeleteCard());
     popupImagePreview.addEventListener("click", () =>
       this._handleImagePreview()
