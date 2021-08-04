@@ -5,6 +5,7 @@ import togglePopup from "../utils/utils.js";
 
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddCard = document.querySelector(".popup_type_add-card");
+const popupPreview = document.querySelector(".popup_type_preview");
 
 // Add New Card Form
 const cardList = document.querySelector(".elements__list");

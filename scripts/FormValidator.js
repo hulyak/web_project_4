@@ -40,8 +40,10 @@ class FormValidator {
 
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
+      buttonElement.disabled = true;
       buttonElement.classList.add(this._inactiveButtonClass);
     } else {
+      buttonElement.disabled = false;
       buttonElement.classList.remove(this._inactiveButtonClass);
     }
   }
@@ -53,6 +55,7 @@ class FormValidator {
     const buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
+
     this._toggleButtonState(inputList, buttonElement);
     // validate all inputs
     inputList.forEach((inputElement) => {

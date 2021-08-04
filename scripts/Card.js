@@ -34,7 +34,6 @@ class Card {
     this._element.remove();
   }
 
-  // have to use functions from index.js
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
