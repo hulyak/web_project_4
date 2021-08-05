@@ -75,7 +75,6 @@ function handleNewCardFormSubmit(event) {
   };
   displayCard(data);
   togglePopup(popupAddCard);
-  cardForm.reset();
 }
 
 // Event Handlers

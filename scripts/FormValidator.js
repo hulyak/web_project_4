@@ -48,7 +48,22 @@ class FormValidator {
     }
   }
 
-  _setEventListeners() {
+  _setEventListeners(inputList, buttonElement) {
+    // disable submit button on loading
+    this._toggleButtonState(inputList, buttonElement);
+
+    // validate all inputs
+    inputList.forEach((inputElement) => {
+      // check whenever any field's input is changed
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+
+        this._toggleButtonState(inputList, buttonElement);
+      });
+    });
+  }
+
+  enableValidation() {
     const inputList = Array.from(
       this._formElement.querySelectorAll(this._inputSelector)
     );
@@ -56,22 +71,13 @@ class FormValidator {
       this._submitButtonSelector
     );
 
-    this._toggleButtonState(inputList, buttonElement);
-    // validate all inputs
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._checkInputValidity(inputElement);
-        // check whenever any field's input is changed
-        this._toggleButtonState(inputList, buttonElement);
-      });
-    });
-  }
-
-  enableValidation() {
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this._formElement.reset();
+      this._toggleButtonState(inputList, buttonElement);
     });
-    this._setEventListeners();
+
+    this._setEventListeners(inputList, buttonElement);
   }
 }
 
