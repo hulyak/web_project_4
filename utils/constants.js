@@ -49,6 +49,13 @@ export const closeCardButton = document.querySelector(
 );
 export const addCardButton = document.querySelector(".profile__add-button");
 
+export const editFormElement = document.querySelector(
+  ".popup__form_type_edit-profile"
+);
+export const cardFormElement = document.querySelector(
+  ".popup__form_type_add-card"
+);
+
 export const initialCards = [
   {
     name: "Yosemite Valley",

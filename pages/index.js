@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-import FormValidator from "..components/FormValidator.js";
+import FormValidator from "../components/FormValidator.js";
 import {
   initialCards,
   profileForm,
@@ -12,7 +12,11 @@ import {
   closePreviewButton,
   closeCardButton,
   addCardButton,
-} from "../components/utils/constants.js";
+  cardList,
+  cardForm,
+  editFormElement,
+  cardFormElement,
+} from "../utils/constants.js";
 import togglePopup from "../utils/utils.js";
 
 function createCard(item) {
@@ -67,11 +71,6 @@ closeProfileButton.addEventListener("click", () =>
 );
 
 closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
-
-const editFormElement = document.querySelector(
-  ".popup__form_type_edit-profile"
-);
-const cardFormElement = document.querySelector(".popup__form_type_add-card");
 
 const defaultFormConfig = {
   inputSelector: ".popup__input",
