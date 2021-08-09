@@ -16,6 +16,10 @@ import {
   cardForm,
   editFormElement,
   cardFormElement,
+  popupEditProfile,
+  popupAddCard,
+  cardFormTitleInput,
+  cardFormImageInput,
 } from "../utils/constants.js";
 import togglePopup from "../utils/utils.js";
 
