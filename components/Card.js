@@ -1,9 +1,5 @@
 import togglePopup from "../utils/utils.js";
-
-// Preview Card Popup
-const popupImage = document.querySelector(".popup__image");
-const popupTitle = document.querySelector(".popup__preview-title");
-const popupPreview = document.querySelector(".popup_type_preview");
+import { popupImage, popupPreview, popupTitle } from "../utils/constants.js";
 
 class Card {
   constructor(data, cardSelector) {

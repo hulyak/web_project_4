@@ -1,44 +1,19 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import initialCards from "./initial-cards.js";
+import Card from "../components/Card.js";
+import FormValidator from "..components/FormValidator.js";
+import {
+  initialCards,
+  profileForm,
+  profileFormNameInput,
+  profileFormOccupationInput,
+  profileName,
+  profileOccupation,
+  profileEditButton,
+  closeProfileButton,
+  closePreviewButton,
+  closeCardButton,
+  addCardButton,
+} from "../components/utils/constants.js";
 import togglePopup from "../utils/utils.js";
-
-const popupEditProfile = document.querySelector(".popup_type_edit-profile");
-const popupAddCard = document.querySelector(".popup_type_add-card");
-const popupPreview = document.querySelector(".popup_type_preview");
-
-// Add New Card Form
-const cardList = document.querySelector(".elements__list");
-const cardForm = document.querySelector(".popup__form_type_add-card");
-const cardFormTitleInput = cardForm.querySelector(".popup__input_type_title");
-const cardFormImageInput = cardForm.querySelector(
-  ".popup__input_type_image-link"
-);
-
-// Edit Profile Form
-const profileForm = document.querySelector(".popup__form_type_edit-profile");
-const profileFormNameInput = profileForm.querySelector(
-  ".popup__input_type_name"
-);
-const profileFormOccupationInput = profileForm.querySelector(
-  ".popup__input_type_job"
-);
-// profile properties
-const profileName = document.querySelector(".profile__name");
-const profileOccupation = document.querySelector(".profile__occupation");
-
-// Buttons
-const profileEditButton = document.querySelector(".profile__edit-button");
-
-const closeProfileButton = document.querySelector(
-  ".popup__close-button_profile"
-);
-const closePreviewButton = document.querySelector(
-  ".popup__close-button_preview"
-);
-
-const closeCardButton = document.querySelector(".popup__close-button_add-card");
-const addCardButton = document.querySelector(".profile__add-button");
 
 function createCard(item) {
   const card = new Card(item, "#cards-template");
