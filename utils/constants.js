@@ -5,7 +5,7 @@ export const popupAddCard = document.querySelector(".popup_type_add-card");
 export const popupPreview = document.querySelector(".popup_type_preview");
 
 // Add New Card Form
-export const cardList = document.querySelector(".elements__list");
+export const cardListSection = document.querySelector(".elements__list");
 export const cardForm = document.querySelector(".popup__form_type_add-card");
 export const cardFormTitleInput = cardForm.querySelector(
   ".popup__input_type_title"

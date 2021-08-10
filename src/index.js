@@ -1,5 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 import {
   initialCards,
   profileForm,
@@ -12,7 +13,7 @@ import {
   closePreviewButton,
   closeCardButton,
   addCardButton,
-  cardList,
+  cardListSection,
   cardForm,
   editFormElement,
   cardFormElement,
@@ -23,17 +24,21 @@ import {
 } from "../utils/constants.js";
 import togglePopup from "../utils/utils.js";
 
-function createCard(item) {
-  const card = new Card(item, "#cards-template");
-  const cardElement = card.generateCard();
-  return cardElement;
-}
+// function createCard(item) {
+//   const card = new Card(item, "#cards-template");
+//   const cardElement = card.generateCard();
+//   return cardElement;
+// }
 
-function displayCard(card) {
-  cardList.prepend(createCard(card));
-}
+// function displayCard(card) {
+// cardList.prepend(createCard(card));
+// }
 
-initialCards.forEach((card) => displayCard(card));
+// initialCards.forEach((card) => displayCard(card));
+
+const cardList = new Section({ data: initialCards }, cardListSection);
+
+cardList.renderItems();
 
 function toggleEditProfilePopup() {
   if (!popupEditProfile.classList.contains("popup_opened")) {
