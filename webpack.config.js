@@ -35,8 +35,15 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
+            options: { importLoaders: 1 },
           },
+          "postcss-loader",
         ],
+      },
+      {
+        // add the rule for processing files
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: "asset/resource",
       },
     ],
   },
