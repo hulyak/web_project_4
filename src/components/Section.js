@@ -1,25 +1,16 @@
-import Card from "./Card";
-
 class Section {
-  constructor({ data }, containerSelector) {
-    this._initialArray = data;
+  constructor({ items, renderer }, containerSelector) {
+    this._initialArray = items;
+    this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
+  }
+
+  renderItems() {
+    this._initialArray.forEach((item) => this._renderer(item));
   }
 
   setItem(element) {
     this._container.append(element);
-  }
-
-  renderItems() {
-    // Iterate over the _renderedItems array of messages
-    this._initialArray.forEach((item) => {
-      // Based on the isOwner field, create instances of the classes
-      const card = new Card(item, "#cards-template");
-      const cardElement = card.generateCard();
-      // Insert the markup on the page
-      // using the setItem() method of the Section() class
-      this.setItem(cardElement);
-    });
   }
 }
 
