@@ -4,6 +4,15 @@ This is an interactive page where users can add, remove, or like their travel ph
 
 Users can edit their profile with the Edit Profile Modal, add new places to the list, remove the card from their list.
 
+Technologies:
+
+- HTML,
+- CSS,
+- BEM Naming Convention,
+- Webpack Bundler,
+- Javascript Module System,
+- OOP
+
 ## [See it live](https://hulyak.github.io/web_project_4/)!
 
 **Figma Links**
