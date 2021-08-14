@@ -23,12 +23,21 @@ import {
   cardFormImageInput,
 } from "../utils/constants.js";
 import togglePopup from "../utils/utils.js";
+import PopupWithImage from "../components/PopupWithImage";
 
 const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#cards-template");
+      const card = new Card(
+        {
+          item,
+          handleCardClick: (data) => {
+            imagePopup.open(data);
+          },
+        },
+        "#cards-template"
+      );
       const cardElement = card.generateCard();
       cardsList.setItem(cardElement);
     },
@@ -37,6 +46,8 @@ const cardsList = new Section(
 );
 
 cardsList.renderItems();
+
+const imagePopup = new PopupWithImage(".popup_type_preview");
 
 function toggleEditProfilePopup() {
   if (!popupEditProfile.classList.contains("popup_opened")) {

@@ -9,7 +9,6 @@ const presets = [
         chrome: "64",
         safari: "11.1",
       },
-
       // Babel uses polyfills from the core-js library
       useBuiltIns: "entry",
       corejs: "^3",

@@ -2,9 +2,10 @@ import togglePopup from "../utils/utils.js";
 import { popupImage, popupPreview, popupTitle } from "../utils/constants.js";
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, handleCardClick, cardSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick; // callback
     this._cardSelector = cardSelector;
   }
 
@@ -13,13 +14,6 @@ class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".element")
       .cloneNode(true);
-  }
-
-  _handleImagePreview() {
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupTitle.textContent = this._name;
-    togglePopup(popupPreview);
   }
 
   _handleLikeButtonToggle(evt) {
@@ -51,10 +45,25 @@ class Card {
       this._handleLikeButtonToggle(evt)
     );
     deleteButton.addEventListener("click", () => this._handleDeleteCard());
+
     popupImagePreview.addEventListener("click", () =>
-      this._handleImagePreview()
+      this._handleCardClick({ link: this._link, name: this._name })
     );
   }
 }
 
 export default Card;
+
+// close
+const imagePopup = new PopupWithImage(".popupimage");
+
+imagePopup.setEventListeners();
+const card = new Card(
+  {
+    data, // name, link
+    handleCardClick: () => {
+      imagePopup.open(data);
+    },
+  },
+  "card-template"
+);
