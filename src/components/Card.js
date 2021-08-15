@@ -1,6 +1,3 @@
-import togglePopup from "../utils/utils.js";
-import { popupImage, popupPreview, popupTitle } from "../utils/constants.js";
-
 class Card {
   constructor(data, handleCardClick, cardSelector) {
     this._name = data.name;
@@ -53,17 +50,3 @@ class Card {
 }
 
 export default Card;
-
-// close
-const imagePopup = new PopupWithImage(".popupimage");
-
-imagePopup.setEventListeners();
-const card = new Card(
-  {
-    data, // name, link
-    handleCardClick: () => {
-      imagePopup.open(data);
-    },
-  },
-  "card-template"
-);

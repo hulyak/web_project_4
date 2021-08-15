@@ -6,13 +6,15 @@ This is an interactive page where users can add, remove, or like their travel ph
 - Profile form and add new card forms are checking the input values by validating the length of the input. (JS ValidityState)
 - Users can close the modals by pressing Esc key or by clicking outside the modal.
 
-Technologies:
+Technologies and concepts:
 
-- HTML,CSS,
+- HTML,
+- CSS, Responsive Design,
+- Figma,
 - BEM Methodology,
 - Webpack Bundler, JS transpilation and minification, CSS minification and autoprefixing, Image and font processing
 - Javascript Module System, ES6,
-- OOP - Loose coupling, Encapsulation and Inheritance
+- OOP - Loose coupling, Encapsulation, Inheritance,and Polymorphism
 - Interface accessibility
 
 ## Classes
@@ -25,10 +27,7 @@ Technologies:
 
 ## Project Layers
 
-![img](src/images/diagram1.png)
-![img](src/images/diagram2.png)
-
-## [See it live](https://hulyak.github.io/web_project_4/)!
+![img](src/images/diagram.svg)
 
 **Figma Links**
 

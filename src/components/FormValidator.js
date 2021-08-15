@@ -60,6 +60,9 @@ class FormValidator {
 
         this._toggleButtonState(inputList, buttonElement);
       });
+
+      // after resetting form, validation messages should also reset
+      this._hideInputError(inputElement);
     });
   }
 

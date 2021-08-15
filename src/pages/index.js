@@ -2,6 +2,9 @@ import "./index.css";
 import Card from "../components/Card";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage";
+import PopupWithForm from "../components/PopupWithForm";
+import UserInfo from "../components/UserInfo";
 import {
   initialCards,
   profileForm,
@@ -23,15 +26,14 @@ import {
   cardFormImageInput,
 } from "../utils/constants.js";
 import togglePopup from "../utils/utils.js";
-import PopupWithImage from "../components/PopupWithImage";
 
 const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
       const card = new Card(
+        item,
         {
-          item,
           handleCardClick: (data) => {
             imagePopup.open(data);
           },
@@ -49,13 +51,14 @@ cardsList.renderItems();
 
 const imagePopup = new PopupWithImage(".popup_type_preview");
 
-function toggleEditProfilePopup() {
-  if (!popupEditProfile.classList.contains("popup_opened")) {
-    profileFormNameInput.value = profileName.textContent;
-    profileFormOccupationInput.value = profileOccupation.textContent;
-  }
-  togglePopup(popupEditProfile);
-}
+imagePopup.setEventListeners();
+
+const userInfoPopup = new PopupWithForm({
+  popupSelector: "..popup__form_type_edit-profile",
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
