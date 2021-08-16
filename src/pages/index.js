@@ -56,16 +56,24 @@ imagePopup.setEventListeners();
 const userInfoPopup = new PopupWithForm({
   popupSelector: "..popup__form_type_edit-profile",
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    const card = new Card(
+      item,
+      {
+        handleCardClick: (data) => {
+          imagePopup.open(data);
+        },
+      },
+      "#cards-template"
+    );
   },
 });
 
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
-  profileName.textContent = profileFormNameInput.value;
-  profileOccupation.textContent = profileFormOccupationInput.value;
-  togglePopup(popupEditProfile);
-}
+const newCardPopup = new PopupWithForm({
+  popupSelector: ".popup__form_type_add-card",
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
 
 function handleNewCardFormSubmit(event) {
   event.preventDefault();
@@ -78,20 +86,9 @@ function handleNewCardFormSubmit(event) {
 }
 
 // Event Handlers
-profileEditButton.addEventListener("click", () => {
-  toggleEditProfilePopup();
-});
 
-addCardButton.addEventListener("click", () => togglePopup(popupAddCard));
 cardForm.addEventListener("submit", handleNewCardFormSubmit);
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
-closeCardButton.addEventListener("click", () => togglePopup(popupAddCard));
-closeProfileButton.addEventListener("click", () =>
-  togglePopup(popupEditProfile)
-);
-
-closePreviewButton.addEventListener("click", () => togglePopup(popupPreview));
 
 const defaultFormConfig = {
   inputSelector: ".popup__input",
