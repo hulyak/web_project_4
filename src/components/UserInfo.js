@@ -1,6 +1,6 @@
 class UserInfo {
-  constructor({ username, job }) {
-    this._username = document.querySelector(username);
+  constructor({ name, job }) {
+    this._name = document.querySelector(name);
     this._job = document.querySelector(job);
   }
 
@@ -11,9 +11,9 @@ class UserInfo {
     };
   }
   // takes new user data and adds it on the page
-  setUserInfo() {
-    this._username.textContent = this._username.name;
-    this._job.textContent = this._job.name;
+  setUserInfo({ name, job }) {
+    this._name.textContent = name;
+    this._job.textContent = job;
   }
 }
 

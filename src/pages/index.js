@@ -7,25 +7,9 @@ import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import {
   initialCards,
-  profileForm,
-  profileFormNameInput,
-  profileFormOccupationInput,
-  profileName,
-  profileOccupation,
-  profileEditButton,
-  closeProfileButton,
-  closePreviewButton,
-  closeCardButton,
-  addCardButton,
-  cardForm,
   editFormElement,
   cardFormElement,
-  popupEditProfile,
-  popupAddCard,
-  cardFormTitleInput,
-  cardFormImageInput,
 } from "../utils/constants.js";
-import togglePopup from "../utils/utils.js";
 
 const cardsList = new Section(
   {
@@ -50,12 +34,35 @@ const cardsList = new Section(
 cardsList.renderItems();
 
 const imagePopup = new PopupWithImage(".popup_type_preview");
-
 imagePopup.setEventListeners();
 
+const userInfo = new UserInfo({
+  name: ".profile__name",
+  job: ".profile__occupation",
+});
+
 const userInfoPopup = new PopupWithForm({
-  popupSelector: "..popup__form_type_edit-profile",
-  handleFormSubmit: (data) => {
+  popupSelector: ".popup_type_edit-profile",
+  handleSubmit: (data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      job: data.job,
+    });
+  },
+});
+
+document
+  .querySelector(".profile__edit-button")
+  .addEventListener("click", () => {
+    userInfoPopup.open();
+  });
+
+userInfoPopup.setEventListeners();
+
+const newCardPopup = new PopupWithForm({
+  popupSelector: ".popup_type_add-card",
+
+  handleSubmit: (item) => {
     const card = new Card(
       item,
       {
@@ -65,30 +72,18 @@ const userInfoPopup = new PopupWithForm({
       },
       "#cards-template"
     );
+    const cardElement = card.generateCard();
+    cardsList.setItem(cardElement);
   },
 });
 
-const newCardPopup = new PopupWithForm({
-  popupSelector: ".popup__form_type_add-card",
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-  },
+document.querySelector(".profile__add-button").addEventListener("click", () => {
+  newCardPopup.open();
 });
 
-function handleNewCardFormSubmit(event) {
-  event.preventDefault();
-  const data = {
-    name: cardFormTitleInput.value,
-    link: cardFormImageInput.value,
-  };
-  displayCard(data);
-  togglePopup(popupAddCard);
-}
+newCardPopup.setEventListeners();
 
-// Event Handlers
-
-cardForm.addEventListener("submit", handleNewCardFormSubmit);
-profileForm.addEventListener("submit", handleProfileFormSubmit);
+// Form Validator
 
 const defaultFormConfig = {
   inputSelector: ".popup__input",

@@ -12,21 +12,22 @@ class Popup {
     this._popupSelector.classList.add("popup_opened");
 
     if (this._popupSelector.classList.contains("popup_opened")) {
-      document.addEventListener("keydown", () => this._handleEscClose);
+      document.addEventListener("keydown", (e) => this._handleEscClose(e));
     }
   }
 
   close() {
-    document.removeEventListener("keydown", () => this._handleEscKey);
+    this._popupSelector.classList.remove("popup_opened");
+    document.removeEventListener("keydown", (e) => this._handleEscClose(e));
   }
 
   setEventListeners() {
     this._popupSelector.addEventListener("click", (evt) => {
       if (
-        evt.target.classList.contains("popup_opened") ||
+        evt.target.classList.contains("popup__button") ||
         evt.target.classList.contains("popup") // outside click
       )
-        this_.close();
+        this.close();
     });
   }
 }

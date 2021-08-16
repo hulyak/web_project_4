@@ -1,5 +1,5 @@
 class Card {
-  constructor(data, handleCardClick, cardSelector) {
+  constructor(data, { handleCardClick }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick; // callback
@@ -44,7 +44,10 @@ class Card {
     deleteButton.addEventListener("click", () => this._handleDeleteCard());
 
     popupImagePreview.addEventListener("click", () =>
-      this._handleCardClick({ link: this._link, name: this._name })
+      this._handleCardClick({
+        name: this._name,
+        link: this._link,
+      })
     );
   }
 }
