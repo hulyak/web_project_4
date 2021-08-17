@@ -23,7 +23,7 @@ Technologies and concepts:
 - Card
 - FormValidator
 - UserInfo
-- Popup class is a parent class for the modals
+- Popup class is a parent class for the subclasses of PopupWithImage and PopupWithForm
 
 ## Project Layers
 
