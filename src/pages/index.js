@@ -11,6 +11,7 @@ import {
   cardFormElement,
 } from "../utils/constants.js";
 
+// Generate Cards
 const cardsList = new Section(
   {
     items: initialCards,
@@ -33,9 +34,7 @@ const cardsList = new Section(
 
 cardsList.renderItems();
 
-const imagePopup = new PopupWithImage(".popup_type_preview");
-imagePopup.setEventListeners();
-
+// Profile Card Form
 const userInfo = new UserInfo({
   name: ".profile__name",
   job: ".profile__occupation",
@@ -59,26 +58,21 @@ document
 
 userInfoPopup.setEventListeners();
 
+// Preview Image Popup
+const imagePopup = new PopupWithImage(".popup_type_preview");
+imagePopup.setEventListeners();
+
 // Add New Card
 const newCardPopup = new PopupWithForm({
   popupSelector: ".popup_type_add-card",
-
-  handleSubmit: (item) => {
-    const card = new Card(
-      item,
-      {
-        handleCardClick: (data) => {
-          const newCard = [{ name: data.textContent, link: data.src }];
-          cardsList.renderItems(newCard);
-          imagePopup.open(data);
-        },
-      },
-      "#cards-template"
-    );
-    const cardElement = card.generateCard();
-    cardsList.setItem(cardElement);
+  handleSubmit: (data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      link: data.link,
+    });
   },
 });
+newCardPopup.setEventListeners();
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
   newCardPopup.open();

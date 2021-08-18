@@ -26,8 +26,9 @@ class Popup {
       if (
         evt.target.classList.contains("popup__button") ||
         evt.target.classList.contains("popup") // outside click
-      )
-        return this.close();
+      ) {
+        this.close();
+      }
     });
   }
 }
