@@ -6,7 +6,7 @@ class UserInfo {
 
   getUserInfo() {
     return {
-      username: this._username.textContent,
+      name: this._name.textContent,
       job: this._job.textContent,
     };
   }

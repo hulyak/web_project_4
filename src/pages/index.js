@@ -59,6 +59,7 @@ document
 
 userInfoPopup.setEventListeners();
 
+// Add New Card
 const newCardPopup = new PopupWithForm({
   popupSelector: ".popup_type_add-card",
 
@@ -67,6 +68,8 @@ const newCardPopup = new PopupWithForm({
       item,
       {
         handleCardClick: (data) => {
+          const newCard = [{ name: data.textContent, link: data.src }];
+          cardsList.renderItems(newCard);
           imagePopup.open(data);
         },
       },
