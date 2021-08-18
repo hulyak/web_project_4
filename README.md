@@ -29,6 +29,19 @@ Technologies and concepts:
 
 ![img](src/images/diagram.svg)
 
+## Installation
+
+```bash
+git clone https://github.com/hulyak/web_project_4.git
+
+npm install
+
+npm run build # builds the project
+
+npm run dev # open the project in the browser localhost:8080
+
+```
+
 **Figma Links**
 
 - [Figma 1](https://www.figma.com/file/NYoOgIJw6t8pYuN51ceqMo/Sprint-4-Around-The-U.S.-desktop-mobile)
