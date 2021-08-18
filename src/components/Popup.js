@@ -24,7 +24,7 @@ class Popup {
   setEventListeners() {
     this._popupSelector.addEventListener("click", (evt) => {
       if (
-        evt.target.classList.contains("popup__button") ||
+        evt.target.classList.contains("popup__close-button") ||
         evt.target.classList.contains("popup") // outside click
       ) {
         this.close();

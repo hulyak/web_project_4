@@ -9,6 +9,8 @@ import {
   initialCards,
   editFormElement,
   cardFormElement,
+  cardFormTitleInput,
+  cardFormImageInput,
 } from "../utils/constants.js";
 
 // Generate Cards
@@ -65,20 +67,28 @@ imagePopup.setEventListeners();
 // Add New Card
 const newCardPopup = new PopupWithForm({
   popupSelector: ".popup_type_add-card",
-  handleSubmit: (data) => {
-    userInfo.setUserInfo({
-      name: data.name,
-      link: data.link,
-    });
+  handleSubmit: ({ name, link }) => {
+    const newCard = { name, link };
+
+    const card = new Card(
+      newCard,
+      {
+        handleCardClick: ({ link, name }) => {
+          imagePopup.open({ link, name });
+        },
+      },
+      "#cards-template"
+    );
+    const cardElement = card.generateCard();
+    cardsList.setItem(cardElement);
   },
 });
+
 newCardPopup.setEventListeners();
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
   newCardPopup.open();
 });
-
-newCardPopup.setEventListeners();
 
 // Form Validator
 
