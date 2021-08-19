@@ -9,14 +9,21 @@ import {
   initialCards,
   editFormElement,
   cardFormElement,
-  cardFormTitleInput,
-  cardFormImageInput,
+  defaultFormConfig,
+  profileEditButton,
+  popupAddCard,
+  cardTemplate,
+  elementsList,
+  popupEditProfile,
+  popupPreview,
 } from "../utils/constants.js";
+
+// Create Cards
 
 // Generate Cards
 const cardsList = new Section(
   {
-    items: initialCards,
+    initialCards,
     renderer: (item) => {
       const card = new Card(
         item,
@@ -25,83 +32,72 @@ const cardsList = new Section(
             imagePopup.open(data);
           },
         },
-        "#cards-template"
+        cardTemplate
       );
       const cardElement = card.generateCard();
       cardsList.setItem(cardElement);
     },
   },
-  ".elements__list"
+  elementsList
 );
 
 cardsList.renderItems();
 
 // Profile Card Form
-const userInfo = new UserInfo({
-  name: ".profile__name",
-  job: ".profile__occupation",
-});
+// const userInfo = new UserInfo({
+//   name: ".profile__name",
+//   job: ".profile__occupation",
+// });
 
-const userInfoPopup = new PopupWithForm({
-  popupSelector: ".popup_type_edit-profile",
-  handleSubmit: (data) => {
-    userInfo.setUserInfo({
-      name: data.name,
-      job: data.job,
-    });
-  },
-});
+// const userInfoPopup = new PopupWithForm({
+//   popupEditProfile,
+//   handleSubmit: (data) => {
+//     userInfo.setUserInfo({
+//       name: data.name,
+//       job: data.job,
+//     });
+//   },
+// });
 
-document
-  .querySelector(".profile__edit-button")
-  .addEventListener("click", () => {
-    userInfoPopup.open();
-  });
+// userInfoPopup.setEventListeners();
 
-userInfoPopup.setEventListeners();
+// // Preview Image Popup
+// const imagePopup = new PopupWithImage(popupPreview);
+// imagePopup.setEventListeners();
 
-// Preview Image Popup
-const imagePopup = new PopupWithImage(".popup_type_preview");
-imagePopup.setEventListeners();
+// // Add New Card
+// const newCardPopup = new PopupWithForm({
+//   popupAddCard,
+//   handleSubmit: ({ name, link }) => {
+//     const newCard = { name, link };
+//     const card = new Card(
+//       newCard,
+//       {
+//         handleCardClick: ({ link, name }) => {
+//           imagePopup.open({ link, name });
+//         },
+//       },
+//       cardsTemplate
+//     );
+//     const cardElement = card.generateCard();
+//     cardsList.setItem(cardElement);
+//   },
+// });
 
-// Add New Card
-const newCardPopup = new PopupWithForm({
-  popupSelector: ".popup_type_add-card",
-  handleSubmit: ({ name, link }) => {
-    const newCard = { name, link };
-
-    const card = new Card(
-      newCard,
-      {
-        handleCardClick: ({ link, name }) => {
-          imagePopup.open({ link, name });
-        },
-      },
-      "#cards-template"
-    );
-    const cardElement = card.generateCard();
-    cardsList.setItem(cardElement);
-  },
-});
-
-newCardPopup.setEventListeners();
-
-document.querySelector(".profile__add-button").addEventListener("click", () => {
-  newCardPopup.open();
-});
+// newCardPopup.setEventListeners();
 
 // Form Validator
-
-const defaultFormConfig = {
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_visible",
-};
-
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormElement);
 
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+
+// Event Listeners
+profileEditButton.addEventListener("click", () => {
+  userInfoPopup.open();
+});
+
+addCardButton.addEventListener("click", () => {
+  newCardPopup.open();
+});
