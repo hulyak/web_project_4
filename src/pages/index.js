@@ -16,75 +16,59 @@ import {
   elementsList,
   popupEditProfile,
   popupPreview,
+  addCardButton,
 } from "../utils/constants.js";
 
 // Create Cards
+const createCard = (item) => {
+  const card = new Card(
+    item,
+    { handleCardClick: ({ name, link }) => imagePopup.open({ name, link }) },
+    cardTemplate
+  );
+  cardsList.setItem(card.generateCard());
+};
 
 // Generate Cards
 const cardsList = new Section(
   {
-    initialCards,
-    renderer: (item) => {
-      const card = new Card(
-        item,
-        {
-          handleCardClick: (data) => {
-            imagePopup.open(data);
-          },
-        },
-        cardTemplate
-      );
-      const cardElement = card.generateCard();
-      cardsList.setItem(cardElement);
-    },
+    items: initialCards,
+    renderer: createCard,
   },
   elementsList
 );
 
 cardsList.renderItems();
 
+// Preview Image Popup
+const imagePopup = new PopupWithImage(popupPreview);
+imagePopup.setEventListeners();
+
+// Add New Card
+const newCardPopup = new PopupWithForm({
+  popupSelector: popupAddCard,
+  handleSubmit: createCard,
+});
+
+newCardPopup.setEventListeners();
+
 // Profile Card Form
-// const userInfo = new UserInfo({
-//   name: ".profile__name",
-//   job: ".profile__occupation",
-// });
+const userInfo = new UserInfo({
+  name: ".profile__name",
+  job: ".profile__occupation",
+});
 
-// const userInfoPopup = new PopupWithForm({
-//   popupEditProfile,
-//   handleSubmit: (data) => {
-//     userInfo.setUserInfo({
-//       name: data.name,
-//       job: data.job,
-//     });
-//   },
-// });
+const userInfoPopup = new PopupWithForm({
+  popupSelector: popupEditProfile,
+  handleSubmit: (data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      job: data.job,
+    });
+  },
+});
 
-// userInfoPopup.setEventListeners();
-
-// // Preview Image Popup
-// const imagePopup = new PopupWithImage(popupPreview);
-// imagePopup.setEventListeners();
-
-// // Add New Card
-// const newCardPopup = new PopupWithForm({
-//   popupAddCard,
-//   handleSubmit: ({ name, link }) => {
-//     const newCard = { name, link };
-//     const card = new Card(
-//       newCard,
-//       {
-//         handleCardClick: ({ link, name }) => {
-//           imagePopup.open({ link, name });
-//         },
-//       },
-//       cardsTemplate
-//     );
-//     const cardElement = card.generateCard();
-//     cardsList.setItem(cardElement);
-//   },
-// });
-
-// newCardPopup.setEventListeners();
+userInfoPopup.setEventListeners();
 
 // Form Validator
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);

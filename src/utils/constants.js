@@ -58,10 +58,10 @@ export const popupTitle = document.querySelector(".popup__preview-title");
 // Edit Profile Form
 export const profileForm = ".popup__form_type_edit-profile";
 
-export const profileFormNameInput = profileForm.querySelector(
+export const profileFormNameInput = document.querySelector(
   ".popup__input_type_name"
 );
-export const profileFormOccupationInput = profileForm.querySelector(
+export const profileFormOccupationInput = document.querySelector(
   ".popup__input_type_job"
 );
 // profile properties
