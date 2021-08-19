@@ -1,6 +1,6 @@
 # Project 4: Around The U.S.
 
-This is an interactive page where users can add, remove, or like their travel photos.
+This is an interactive page which users can add, remove, or like their travel photos.
 
 - Users can edit their profile with the Edit Profile Modal, add new places to the list, remove the card from their list.
 - Profile form and add new card forms are checking the input values by validating the length of the input. (JS ValidityState)
