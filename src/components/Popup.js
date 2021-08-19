@@ -1,6 +1,7 @@
 class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   // close the Popup by Pressing Escape key
@@ -12,13 +13,13 @@ class Popup {
     this._popupElement.classList.add("popup_opened");
 
     if (this._popupElement.classList.contains("popup_opened")) {
-      document.addEventListener("keydown", (e) => this._handleEscClose(e));
+      document.addEventListener("keydown", this._handleEscClose);
     }
   }
 
   close() {
     this._popupElement.classList.remove("popup_opened");
-    document.removeEventListener("keydown", (e) => this._handleEscClose(e));
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   setEventListeners() {
