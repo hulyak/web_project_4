@@ -17,6 +17,10 @@ import {
   popupEditProfile,
   popupPreview,
   addCardButton,
+  profileName,
+  profileJob,
+  profileFormNameInput,
+  profileFormJobInput,
 } from "../utils/constants.js";
 
 // Create Cards
@@ -53,10 +57,7 @@ const newCardPopup = new PopupWithForm({
 newCardPopup.setEventListeners();
 
 // Profile Card Form
-const userInfo = new UserInfo({
-  name: ".profile__name",
-  job: ".profile__occupation",
-});
+const userInfo = new UserInfo({ name: profileName, job: profileJob });
 
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
@@ -79,6 +80,10 @@ cardFormValidator.enableValidation();
 
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
+  // prepopulate profile form at first click
+  const { name, job } = userInfo.getUserInfo();
+  profileFormNameInput.value = name;
+  profileFormJobInput.value = job;
   userInfoPopup.open();
 });
 

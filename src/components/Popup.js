@@ -25,7 +25,7 @@ class Popup {
   setEventListeners() {
     this._popupElement.addEventListener("click", (evt) => {
       if (
-        evt.target.classList.contains("popup__close-button") ||
+        evt.target.classList.contains("popup__close-button") || // close icon of the popup
         evt.target.classList.contains("popup") // outside click
       ) {
         this.close();

@@ -40,34 +40,6 @@ export const popupEditProfile = ".popup_type_edit-profile";
 export const popupAddCard = ".popup_type_add-card";
 export const popupPreview = ".popup_type_preview";
 
-// Add New Card Form
-
-export const cardForm = document.querySelector(".popup__form_type_add-card");
-
-export const cardFormTitleInput = cardForm.querySelector(
-  ".popup__input_type_title"
-);
-export const cardFormImageInput = cardForm.querySelector(
-  ".popup__input_type_image-link"
-);
-
-// Preview Card Popup
-export const popupImage = document.querySelector(".popup__image");
-export const popupTitle = document.querySelector(".popup__preview-title");
-
-// Edit Profile Form
-export const profileForm = ".popup__form_type_edit-profile";
-
-export const profileFormNameInput = document.querySelector(
-  ".popup__input_type_name"
-);
-export const profileFormOccupationInput = document.querySelector(
-  ".popup__input_type_job"
-);
-// profile properties
-export const profileName = ".profile__name";
-export const profileOccupation = ".profile__occupation";
-
 // Buttons
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
@@ -78,4 +50,13 @@ export const editFormElement = document.querySelector(
 );
 export const cardFormElement = document.querySelector(
   ".popup__form_type_add-card"
+);
+
+export const profileName = ".profile__name";
+export const profileJob = ".profile__job";
+export const profileFormNameInput = document.querySelector(
+  ".popup__input_type_name"
+);
+export const profileFormJobInput = document.querySelector(
+  ".popup__input_type_job"
 );
