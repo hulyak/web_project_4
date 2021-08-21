@@ -12,7 +12,7 @@
 @import url("../styles/blocks/profile/__avatar/profile__avatar.css");
 @import url("../styles/blocks/profile/__info/profile__info.css");
 @import url("../styles/blocks/profile/__name/profile__name.css");
-@import url("../styles/blocks/profile/__occupation/profile__occupation.css");
+@import url("../styles/blocks/profile/__job/profile__job.css");
 @import url("../styles/blocks/profile/__edit-button/profile__edit-button.css");
 @import url("../styles/blocks/element/__delete-button/element__delete-button.css");
 @import url("../styles/blocks/profile/__add-button/profile__add-button.css");

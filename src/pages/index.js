@@ -42,6 +42,9 @@ const cardsList = new Section(
   elementsList
 );
 
+// cardsList.setItem(createCard);
+
+// render the cards to the DOM
 cardsList.renderItems();
 
 // Preview Image Popup
