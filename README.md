@@ -1,10 +1,10 @@
-# Project 4: Around The U.S.
+# Around The U.S.
 
 This is an interactive page that users can add, remove, or like their travel photos.
 
 - Users can edit their profile with the Edit Profile Modal, add new places to the list, remove the card from their list.
 - Profile form and add new card forms are checking the input values by validating the length of the input. (JS ValidityState)
-- Users can close the modals by pressing Esc key or by clicking outside the modal.
+- Users can close the modals by pressing the Esc key or by clicking outside the modal.
 
 ## [See it live!](around-us.netlify.app/)
 
