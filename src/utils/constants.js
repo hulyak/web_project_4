@@ -53,7 +53,8 @@ export const cardFormElement = document.querySelector(
 );
 
 export const profileName = ".profile__name";
-export const profileJob = ".profile__job";
+export const profileAbout = ".profile__job";
+export const profileAvatar = ".profile__avatar";
 export const profileFormNameInput = document.querySelector(
   ".popup__input_type_name"
 );
