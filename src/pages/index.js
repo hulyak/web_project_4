@@ -25,12 +25,14 @@ import {
 } from "../utils/constants.js";
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-10",
+  baseUrl: `https://around.nomoreparties.co/v1/${process.env.GROUP_ID}`,
   headers: {
-    authorization: "6af9648e-23ea-4651-bc48-5ca8b1b3f30e",
+    authorization: process.env.TOKEN,
     "Content-Type": "application/json",
   },
 });
+
+console.log(api);
 
 // Create Cards
 const createCard = (item) => {
