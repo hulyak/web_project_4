@@ -19,7 +19,8 @@ import {
   popupPreview,
   addCardButton,
   profileName,
-  profileJob,
+  profileAbout,
+  profileAvatar,
   profileFormNameInput,
   profileFormJobInput,
 } from "../utils/constants.js";
@@ -31,8 +32,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-console.log(api);
 
 // Create Cards
 const createCard = (item) => {
@@ -68,20 +67,28 @@ const newCardPopup = new PopupWithForm({
 
 newCardPopup.setEventListeners();
 
-// Profile Card Form
-const userInfo = new UserInfo({ name: profileName, job: profileJob });
+// Profile Card Form with API
+api.loadUserInfo().then((data) => {
+  console.log(data);
+  userInfoPopup.setEventListeners();
+});
+
+const userInfo = new UserInfo({
+  name: profileName,
+  about: profileAbout,
+  avatar: profileAvatar,
+});
 
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
   handleSubmit: (data) => {
     userInfo.setUserInfo({
       name: data.name,
-      job: data.job,
+      about: data.about,
+      avatar: data.avatar,
     });
   },
 });
-
-userInfoPopup.setEventListeners();
 
 // Form Validator
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
@@ -93,9 +100,9 @@ cardFormValidator.enableValidation();
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
   // prepopulate profile form at first click
-  const { name, job } = userInfo.getUserInfo();
+  const { name, about } = userInfo.getUserInfo();
   profileFormNameInput.value = name;
-  profileFormJobInput.value = job;
+  profileFormJobInput.value = about;
   userInfoPopup.open();
 });
 
