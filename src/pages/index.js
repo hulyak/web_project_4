@@ -1,5 +1,6 @@
 import "./index.css";
 import Card from "../components/Card";
+import Api from "../components/Api";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage";
@@ -22,6 +23,14 @@ import {
   profileFormNameInput,
   profileFormJobInput,
 } from "../utils/constants.js";
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-10",
+  headers: {
+    authorization: "6af9648e-23ea-4651-bc48-5ca8b1b3f30e",
+    "Content-Type": "application/json",
+  },
+});
 
 // Create Cards
 const createCard = (item) => {
