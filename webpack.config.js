@@ -23,14 +23,6 @@ module.exports = {
     port: 8080,
     open: true,
   },
-  resolve: {
-    fallback: {
-      fs: false,
-      path: false,
-      os: false,
-      process: false,
-    },
-  },
   module: {
     rules: [
       {
