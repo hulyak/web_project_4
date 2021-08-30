@@ -8,8 +8,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
       (res) => {
-        if (res.ok) return res.json();
-        return Promise.reject(`Error: ${res.status}`);
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       }
     );
   }
@@ -18,19 +17,26 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) return res.json();
-      return Promise.reject(`Error: ${res.status}`);
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 
-  editProfile() {
+  editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
-      body: JSON.stringify({ name: this.name, about: this.about }),
+      body: JSON.stringify({ name, about }),
     }).then((res) => {
-      if (res.ok) return res.json();
-      return Promise.reject(`Error: ${res.status}`);
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE",
+    }).then((res) => {
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 }

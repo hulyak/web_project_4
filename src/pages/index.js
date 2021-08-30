@@ -26,17 +26,6 @@ import {
   deleteButton,
 } from "../utils/constants.js";
 
-// Create Cards
-const createCard = (item) => {
-  const card = new Card(
-    item,
-    { handleCardClick: ({ name, link }) => imagePopup.open({ name, link }) },
-    // { handleDeleteClick: ({ id }) => deleteCard(id) },
-    cardTemplate
-  );
-  cardsList.setItem(card.generateCard());
-};
-
 const api = new Api({
   baseUrl: `https://around.nomoreparties.co/v1/${process.env.GROUP_ID}`,
   headers: {
@@ -44,8 +33,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-// const initialCards = api.getInitialCards().then((res) => res);
 
 // Generate Cards
 const cardsList = new Section(
@@ -55,6 +42,20 @@ const cardsList = new Section(
   },
   elementsList
 );
+
+// Create Cards
+api.getInitialCards().then((res) => {
+  const createCard = (item) => {
+    const card = new Card(
+      item,
+      { handleCardClick: ({ name, link }) => imagePopup.open({ name, link }) },
+      { handleDeleteClick: ({ _id }) => api.deleteCard(_id) },
+      cardTemplate
+    );
+    cardsList.setItem(card.generateCard());
+  };
+  res.forEach((item) => createCard(item));
+});
 
 // render the cards to the DOM
 cardsList.renderItems();
