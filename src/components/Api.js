@@ -5,15 +5,20 @@ class Api {
     this._cardId = cardId;
   }
 
-  getInitialCards() {}
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
+      (res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    );
+  }
 
   loadUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
+      if (res.ok) return res.json();
       return Promise.reject(`Error: ${res.status}`);
     });
   }

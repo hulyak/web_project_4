@@ -7,7 +7,6 @@ import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import {
-  initialCards,
   editFormElement,
   cardFormElement,
   defaultFormConfig,
@@ -25,14 +24,6 @@ import {
   profileFormJobInput,
 } from "../utils/constants.js";
 
-const api = new Api({
-  baseUrl: `https://around.nomoreparties.co/v1/${process.env.GROUP_ID}`,
-  headers: {
-    authorization: process.env.TOKEN,
-    "Content-Type": "application/json",
-  },
-});
-
 // Create Cards
 const createCard = (item) => {
   const card = new Card(
@@ -42,6 +33,16 @@ const createCard = (item) => {
   );
   cardsList.setItem(card.generateCard());
 };
+
+const api = new Api({
+  baseUrl: `https://around.nomoreparties.co/v1/${process.env.GROUP_ID}`,
+  headers: {
+    authorization: process.env.TOKEN,
+    "Content-Type": "application/json",
+  },
+});
+
+const initialCards = api.getInitialCards().then((res) => res);
 
 // Generate Cards
 const cardsList = new Section(
@@ -82,11 +83,15 @@ const userInfo = new UserInfo({
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
   handleSubmit: (data) => {
-    userInfo.setUserInfo({
-      name: data.name,
-      about: data.about,
-      avatar: data.avatar,
-    });
+    userInfo
+      .setUserInfo({
+        name: data.name,
+        about: data.about,
+        avatar: data.avatar,
+      })
+      .then(() => {
+        userInfo.setUserInfo(data);
+      });
   },
 });
 
