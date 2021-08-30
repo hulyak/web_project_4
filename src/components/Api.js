@@ -22,6 +22,17 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  editProfile() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({ name: this.name, about: this.about }),
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
 
 export default Api;
