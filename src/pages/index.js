@@ -7,7 +7,6 @@ import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import {
-  initialCards,
   editFormElement,
   cardFormElement,
   defaultFormConfig,
@@ -17,6 +16,7 @@ import {
   elementsList,
   popupEditProfile,
   popupPreview,
+  popupConfirm,
   addCardButton,
   profileName,
   profileAbout,
@@ -34,35 +34,33 @@ const api = new Api({
   },
 });
 
+// Create Cards
+const createCard = (item) => {
+  const card = new Card(
+    item,
+    {
+      handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
+      handleDeleteClick: ({ _id }) => api.deleteCard(_id),
+    },
+    cardTemplate
+  );
+  cardsList.setItem(card.generateCard());
+};
+
 // Generate Cards
 const cardsList = new Section(
   {
-    items: initialCards,
     renderer: createCard,
   },
   elementsList
 );
 
-// Create Cards
-api.getInitialCards().then((res) => {
-  const createCard = (item) => {
-    const card = new Card(
-      item,
-      { handleCardClick: ({ name, link }) => imagePopup.open({ name, link }) },
-      { handleDeleteClick: ({ _id }) => api.deleteCard(_id) },
-      cardTemplate
-    );
-    cardsList.setItem(card.generateCard());
-  };
-  res.forEach((item) => createCard(item));
-});
-
 // render the cards to the DOM
-cardsList.renderItems();
+api.getInitialCards().then((items) => cardsList.renderItems(items));
 
-deleteButton.addEventListener("click", () => {
-  confirmPopup.open();
-});
+// deleteButton.addEventListener("click", () => {
+//   popupConfirm.open();
+// });
 
 // Preview Image Popup
 const imagePopup = new PopupWithImage(popupPreview);
