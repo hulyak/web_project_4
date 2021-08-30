@@ -40,7 +40,7 @@ const createCard = (item) => {
     item,
     {
       handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
-      handleDeleteClick: ({ _id }) => api.deleteCard(_id),
+      handleDeleteClick: ({ _id }) => api.deleteCard({ _id }),
     },
     cardTemplate
   );
