@@ -5,11 +5,11 @@
   margin-right: 30px;
 }
 
-/* .profile__avatar:hover {
+.profile__avatar:hover {
   cursor: pointer;
   background: url("../../../../images/Pencil.svg") center no-repeat;
   background-color: #c4c4c4;
-} */
+}
 
 @media only screen and (max-width: 650px) {
   .profile__avatar {
