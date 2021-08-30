@@ -77,31 +77,21 @@ const newCardPopup = new PopupWithForm({
 newCardPopup.setEventListeners();
 
 // Profile Card Form with API
-api.loadUserInfo().then((data) => {
-  console.log(data);
-  userInfoPopup.setEventListeners();
-});
-
 const userInfo = new UserInfo({
   name: profileName,
   about: profileAbout,
-  avatar: profileAvatar,
 });
 
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
-  handleSubmit: (data) => {
-    userInfo
-      .setUserInfo({
-        name: data.name,
-        about: data.about,
-        avatar: data.avatar,
-      })
-      .then(() => {
-        userInfo.setUserInfo(data);
-      });
+  handleSubmit: ({ name, about }) => {
+    api.setUserInfo({ name, about }).then(() => {
+      userInfo.setUserInfo({ name, about });
+    });
   },
 });
+
+userInfoPopup.setEventListeners();
 
 // Form Validator
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
