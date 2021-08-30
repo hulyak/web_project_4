@@ -7,6 +7,7 @@ import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import {
+  initialCards,
   editFormElement,
   cardFormElement,
   defaultFormConfig,
@@ -30,7 +31,7 @@ const createCard = (item) => {
   const card = new Card(
     item,
     { handleCardClick: ({ name, link }) => imagePopup.open({ name, link }) },
-    { handleDeleteClick: ({ id }) => deleteCard(id) },
+    // { handleDeleteClick: ({ id }) => deleteCard(id) },
     cardTemplate
   );
   cardsList.setItem(card.generateCard());
@@ -44,7 +45,7 @@ const api = new Api({
   },
 });
 
-const initialCards = api.getInitialCards().then((res) => res);
+// const initialCards = api.getInitialCards().then((res) => res);
 
 // Generate Cards
 const cardsList = new Section(
