@@ -1,43 +1,59 @@
 class Api {
-  constructor({ baseUrl, headers, cardId }) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._cardId = cardId;
   }
 
+  _handleResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
-      (res) => {
-        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-      }
+      (res) => this._handleResponse(res)
     );
   }
 
   loadUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then((res) => this._handleResponse(res));
   }
 
-  editProfile(name, about) {
+  setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({ name, about }),
-    }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then((res) => this._handleResponse(res));
+  }
+
+  setUserAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({ avatar }),
+    }).then((res) => this._handleResponse(res));
+  }
+
+  addLikes(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: "PUT",
+    }).then((res) => this._handleResponse(res));
+  }
+
+  deleteLikes(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE",
+    }).then((res) => this._handleResponse(res));
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       headers: this._headers,
       method: "DELETE",
-    }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then((res) => this._handleResponse(res));
   }
 }
 
