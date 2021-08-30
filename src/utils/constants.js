@@ -39,12 +39,15 @@ export const elementsList = ".elements__list";
 export const popupEditProfile = ".popup_type_edit-profile";
 export const popupAddCard = ".popup_type_add-card";
 export const popupPreview = ".popup_type_preview";
+export const popupConfirm = ".popup_type_confirm";
 
 // Buttons
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
 export const addCardButton = document.querySelector(".profile__add-button");
+export const deleteButton = document.querySelector(".element__delete-button");
+
 export const editFormElement = document.querySelector(
   ".popup__form_type_edit-profile"
 );

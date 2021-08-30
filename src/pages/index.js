@@ -22,6 +22,7 @@ import {
   profileAvatar,
   profileFormNameInput,
   profileFormJobInput,
+  deleteButton,
 } from "../utils/constants.js";
 
 // Create Cards
@@ -29,6 +30,7 @@ const createCard = (item) => {
   const card = new Card(
     item,
     { handleCardClick: ({ name, link }) => imagePopup.open({ name, link }) },
+    { handleDeleteClick: ({ id }) => deleteCard(id) },
     cardTemplate
   );
   cardsList.setItem(card.generateCard());
@@ -55,6 +57,10 @@ const cardsList = new Section(
 
 // render the cards to the DOM
 cardsList.renderItems();
+
+deleteButton.addEventListener("click", () => {
+  confirmPopup.open();
+});
 
 // Preview Image Popup
 const imagePopup = new PopupWithImage(popupPreview);
