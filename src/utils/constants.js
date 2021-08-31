@@ -13,6 +13,7 @@ export const popupEditProfile = ".popup_type_edit-profile";
 export const popupAddCard = ".popup_type_add-card";
 export const popupPreview = ".popup_type_preview";
 export const popupConfirm = ".popup_type_confirm";
+export const popupProfileAvatar = ".popup_type_profile-avatar";
 
 // Buttons
 export const profileEditButton = document.querySelector(

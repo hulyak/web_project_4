@@ -7,7 +7,7 @@
 
 .profile__avatar:hover {
   cursor: pointer;
-  background: url("../../../../images/Pencil.svg") center no-repeat;
+  background: url("../../../../images/Pencil.svg");
   background-color: #c4c4c4;
 }
 

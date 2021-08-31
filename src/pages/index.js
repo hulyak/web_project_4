@@ -17,6 +17,7 @@ import {
   popupEditProfile,
   popupPreview,
   popupConfirm,
+  popupProfileAvatar,
   addCardButton,
   profileName,
   profileAbout,
@@ -54,7 +55,9 @@ const createCard = (item) => {
               .deleteCard(id)
               .then((card) => {
                 card.handleDeleteCard();
-                deleteCardPopup.close();
+                api.getInitialCards().then((cards) => {
+                  cardsList.renderItems(cards);
+                });
               })
               .catch((err) => {
                 console.log(err);
@@ -100,6 +103,7 @@ newCardPopup.setEventListeners();
 const userInfo = new UserInfo({
   name: profileName,
   about: profileAbout,
+  avatar: profileAvatar,
 });
 
 api
@@ -122,6 +126,21 @@ const userInfoPopup = new PopupWithForm({
 });
 
 userInfoPopup.setEventListeners();
+
+// Update Profile Avatar
+const profileAvatarPopup = new PopupWithForm({
+  popupSelector: popupProfileAvatar,
+  handleSubmit: ({ avatar }) => {
+    api
+      .setUserAvatar({ avatar })
+      .then(() => {
+        userInfo.setUserInfo({ avatar });
+      })
+      .catch((err) => console.log(err));
+  },
+});
+
+profileAvatarPopup.setEventListeners();
 
 // Form Validator
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
