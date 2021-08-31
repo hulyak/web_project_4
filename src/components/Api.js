@@ -37,6 +37,11 @@ class Api {
     }).then((res) => this._handleResponse(res));
   }
 
+  /**
+   *Returns a Promise of type Response that yields user avatar
+   * @param {String} avatar the avatar url of the user's profile
+   * @returns Promise<Response>
+   */
   setUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
@@ -45,6 +50,12 @@ class Api {
     }).then((res) => this._handleResponse(res));
   }
 
+  /**
+   * Returns a Promise of type Response that yields a
+   * single card given an ID
+   * @param {String} cardId the ID that corresponds to a card
+   * @returns Promise<Response>
+   */
   addLikes(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
