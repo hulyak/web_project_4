@@ -14,6 +14,15 @@ class Api {
     );
   }
 
+  addCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      "Content-Type": "application/json",
+      body: JSON.stringify({ name, link }),
+    }).then((res) => this._handleResponse(res));
+  }
+
   loadUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,

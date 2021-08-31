@@ -56,11 +56,10 @@ const cardsList = new Section(
 );
 
 // render the cards to the DOM
-api.getInitialCards().then((items) => cardsList.renderItems(items));
-
-// deleteButton.addEventListener("click", () => {
-//   popupConfirm.open();
-// });
+api
+  .getInitialCards()
+  .then((items) => cardsList.renderItems(items))
+  .catch((err) => console.log(err));
 
 // Preview Image Popup
 const imagePopup = new PopupWithImage(popupPreview);
@@ -69,10 +68,18 @@ imagePopup.setEventListeners();
 // Add New Card
 const newCardPopup = new PopupWithForm({
   popupSelector: popupAddCard,
-  handleSubmit: createCard,
+  handleSubmit: ({ name, link }) =>
+    api
+      .addCard({ name, link })
+      .then((item) => createCard(item))
+      .catch((err) => console.log(err)),
 });
 
 newCardPopup.setEventListeners();
+
+// deleteButton.addEventListener("click", () => {
+//   popupConfirm.open();
+// });
 
 // Profile Card Form with API
 const userInfo = new UserInfo({
@@ -80,12 +87,22 @@ const userInfo = new UserInfo({
   about: profileAbout,
 });
 
+api
+  .loadUserInfo()
+  .then(({ name, about }) => {
+    userInfo.setUserInfo({ name, about });
+  })
+  .catch((err) => console.log(err));
+
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
   handleSubmit: ({ name, about }) => {
-    api.setUserInfo({ name, about }).then(() => {
-      userInfo.setUserInfo({ name, about });
-    });
+    api
+      .setUserInfo({ name, about })
+      .then(() => {
+        userInfo.setUserInfo({ name, about });
+      })
+      .catch((err) => console.log(err));
   },
 });
 
