@@ -40,6 +40,35 @@
         ></button>
       </section>
 
+      <!-- Update Profile Picture Popup -->
+      <section class="popup popup_type_profile-avatar">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__close-button popup__close-button_avatar"
+            aria-label="Close button"
+          ></button>
+          <form
+            name="profile"
+            class="popup__form popup__form_type_edit-profile-avatar"
+            novalidate
+          >
+            <h2 class="popup__title">Change profile picture</h2>
+            <label class="popup__form-field">
+              <input
+                type="url"
+                name="avatar"
+                class="popup__input popup__input_type_image"
+                placeholder="avatar link"
+                id="avatar-input"
+                required
+              />
+              <span class="popup__input-error url-input-error"></span>
+             <button type="submit" class="popup__button">Save</button>
+          </form>
+        </div>
+      </section>
+
       <!-- Edit profile Popup Form -->
       <section class="popup popup_type_edit-profile">
         <div class="popup__container">
@@ -65,7 +94,7 @@
                 id="name-input"
                 required
               />
-              <span class="popup__input-error name-input-error"></span>
+            <span class="popup__input-error name-input-error"></span>
             </label>
             <label class="popup__form-field">
               <input
@@ -80,7 +109,6 @@
               />
               <span class="popup__input-error job-input-error"></span>
             </label>
-
             <button type="submit" class="popup__button">Save</button>
           </form>
         </div>
@@ -141,6 +169,27 @@
           ></button>
           <img class="popup__image" src="#" alt="preview image" />
           <p class="popup__preview-title"></p>
+        </div>
+      </section>
+
+      <!-- Delete Card Confirmation Popup -->
+      <section class="popup popup_type_confirm">
+        <div class="popup__container">
+          <button
+            type="button"
+            class="popup__close-button popup__close-button_confirm"
+            aria-label="Close button"
+          ></button>
+          <form name="card" class="popup__form popup__form_type_confirm">
+            <p class="popup__title">Are you sure?</p>
+            <button
+              type="submit"
+              class="popup__button"
+              aria-label="Confirm Button"
+            >
+              Yes
+            </button>
+          </form>
         </div>
       </section>
 
