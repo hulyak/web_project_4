@@ -33,6 +33,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
+      "Content-Type": "application/json",
       body: JSON.stringify({ name, about }),
     }).then((res) => this._handleResponse(res));
   }
@@ -75,6 +76,17 @@ class Api {
       headers: this._headers,
       method: "DELETE",
     }).then((res) => this._handleResponse(res));
+  }
+
+  addNewCard() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+      method: "POST",
+      body: JSON.stringify({ name: this.name, link: this.link }),
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 }
 
