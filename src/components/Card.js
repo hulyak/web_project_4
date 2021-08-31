@@ -8,6 +8,10 @@ class Card {
     this._cardSelector = cardSelector;
   }
 
+  getId() {
+    return this._id;
+  }
+
   _getTemplate() {
     return document
       .querySelector(this._cardSelector)
@@ -19,7 +23,7 @@ class Card {
     evt.target.classList.toggle("element__like-button_active");
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._element.remove();
   }
 
@@ -43,9 +47,7 @@ class Card {
     likeButton.addEventListener("click", (evt) =>
       this._handleLikeButtonToggle(evt)
     );
-    deleteButton.addEventListener("click", () =>
-      this._handleDeleteClick(this._id)
-    );
+    deleteButton.addEventListener("click", () => this._handleDeleteClick());
 
     popupImagePreview.addEventListener("click", () =>
       this._handleCardClick({
