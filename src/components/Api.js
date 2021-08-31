@@ -33,6 +33,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
+      "Content-Type": "application/json",
       body: JSON.stringify({ name, about }),
     }).then((res) => this._handleResponse(res));
   }
