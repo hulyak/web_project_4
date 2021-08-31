@@ -1,5 +1,5 @@
 {
-  "name": "web_project_4",
+  "name": "around_the_us",
   "version": "1.0.0",
   "description": "This is an interactive page where users can add, remove, or like their travel photos.",
   "main": "index.js",
