@@ -8,10 +8,6 @@ class Card {
     this._cardSelector = cardSelector;
   }
 
-  getId() {
-    return this._id;
-  }
-
   _getTemplate() {
     return document
       .querySelector(this._cardSelector)
@@ -21,6 +17,10 @@ class Card {
 
   _handleLikeButtonToggle(evt) {
     evt.target.classList.toggle("element__like-button_active");
+  }
+
+  getId() {
+    return this._id;
   }
 
   handleDeleteCard() {
