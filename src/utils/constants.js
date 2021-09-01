@@ -24,16 +24,22 @@ export const deleteButton = document.querySelector(".element__delete-button");
 export const profileAvatarButton = document.querySelector(
   ".profile__avatar-overlay"
 );
+
+// Popup forms
 export const editFormElement = document.querySelector(
   ".popup__form_type_edit-profile"
 );
 export const cardFormElement = document.querySelector(
   ".popup__form_type_add-card"
 );
+export const profileAvatarElement = document.querySelector(
+  ".popup__form_type_edit-profile-avatar"
+);
 
 export const profileName = ".profile__name";
 export const profileAbout = ".profile__job";
 export const profileAvatar = ".profile__avatar";
+
 export const profileFormNameInput = document.querySelector(
   ".popup__input_type_name"
 );
