@@ -40,72 +40,70 @@ const api = new Api({
 const imagePopup = new PopupWithImage(popupPreview);
 imagePopup.setEventListeners();
 
-// Create Cards
-const createCard = (item) => {
-  const card = new Card(
-    item,
-    {
-      handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
-      // Delete Card Popup
-      handleDeleteClick: () => {
-        const id = card.getId();
-        const deleteCardPopup = new PopupWithForm({
-          popupSelector: popupConfirm,
-          handleSubmit: () => {
-            api
-              .deleteCard(id)
-              .then(() => {
-                card.handleDeleteCard();
-                api.getInitialCards().then((cards) => {
-                  cardsList.renderItems(cards);
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          },
-        });
-        deleteCardPopup.setEventListeners();
-        deleteCardPopup.open(id);
-      },
-    },
-    cardTemplate
-  );
-  cardsList.setItem(card.generateCard());
-};
-
-// Generate Cards
-const cardsList = new Section(
-  {
-    renderer: createCard,
-  },
-  elementsList
-);
-
-// render the cards to the DOM
-api
-  .getInitialCards()
-  .then((items) => cardsList.renderItems(items))
-  .catch((err) => console.log(err));
-
-// Add New Card
-const newCardPopup = new PopupWithForm({
-  popupSelector: popupAddCard,
-  handleSubmit: ({ name, link }) =>
-    api
-      .addCard({ name, link })
-      .then((item) => createCard(item))
-      .catch((err) => console.log(err)),
-});
-
-newCardPopup.setEventListeners();
-
 // Profile Card Form with API
-const userInfo = new UserInfo({
+const profileInfo = new UserInfo({
   name: profileName,
   about: profileAbout,
   avatar: profileAvatar,
 });
+
+console.log(api.getAppInfo());
+
+// Delete card confirmation popup
+const deleteCardPopup = new PopupWithForm(popupConfirm);
+deleteCardPopup.setEventListeners();
+
+// render the cards to the DOM
+api
+  .getAppInfo(([userInfo, initialCardsList]) => {
+    const userId = userInfo._id;
+
+    // Generate Cards
+    const cardsList = new Section(
+      {
+        items: initialCardsList,
+        renderer: createCard,
+      },
+      elementsList
+    );
+    cardsList.renderItems();
+
+    // Add New Card
+    const newCardPopup = new PopupWithForm({
+      popupSelector: popupAddCard,
+      handleSubmit: ({ name, link }) =>
+        api
+          .addCard({ name, link })
+          .then((item) => createCard(item))
+          .catch((err) => console.log(err)),
+    });
+
+    newCardPopup.setEventListeners();
+
+    // Create Cards
+    const renderCard = (item) => {
+      const card = new Card(
+        item,
+        {
+          handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
+          // Delete Card Popup
+          handleDeleteClick: (cardId) => {
+            deleteCardPopup.open(cardId);
+            deleteCardPopup.setSubmitHandler(() =>
+              api
+                .deleteCard(cardId)
+                .then(() => card.handleDeleteCard())
+                .catch((err) => console.log(err))
+            );
+          },
+        },
+        userId,
+        cardTemplate
+      );
+      cardsList.setItem(card.generateCard());
+    };
+  })
+  .catch((err) => console.log(err));
 
 api
   .loadUserInfo()
@@ -120,7 +118,7 @@ const userInfoPopup = new PopupWithForm({
     api
       .setUserInfo({ name, about })
       .then(() => {
-        userInfo.setUserInfo({ name, about });
+        profileInfo.setUserInfo({ name, about });
       })
       .catch((err) => console.log(err));
   },
@@ -159,6 +157,6 @@ profileEditButton.addEventListener("click", () => {
   userInfoPopup.open();
 });
 
-addCardButton.addEventListener("click", () => newCardPopup.open());
-
 profileAvatarButton.addEventListener("click", () => profileAvatarPopup.open());
+addCardButton.addEventListener("click", () => newCardPopup.open());
+deleteButton.addEventListener("click", () => deleteCardPopup.open());

@@ -1,12 +1,20 @@
 class Card {
-  constructor(data, { handleCardClick, handleDeleteClick }, cardSelector) {
+  constructor(
+    data,
+    { handleCardClick, handleDeleteClick, userData, handleLikeClick },
+    cardSelector
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
-    this._ownerId = data.owner._id;
-    // this._userId = userId;
+    this._creatorId = data.owner._id;
+    this._userId = userData._id;
+    // this._ownerName = data.owner._name;
+    // this._likes = data.likes;
+    // this._timesLiked = data.likes.length;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
+    // this._handleLikeClick = handleLikeClick;
     this._cardSelector = cardSelector;
   }
 
@@ -21,7 +29,7 @@ class Card {
     evt.target.classList.toggle("element__like-button_active");
   }
 
-  getId() {
+  _getId() {
     return this._id;
   }
 
@@ -33,32 +41,38 @@ class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this.deleteUserCard();
-
     this._element.querySelector(
       ".element__image"
     ).style.backgroundImage = `url(${this._link})`;
     this._element.querySelector(".element__text").textContent = this._name;
 
+    this.deleteBinIcon();
+
     return this._element;
   }
 
-  deleteUserCard() {}
+  deleteBinIcon() {
+    if (this._userId !== this._creatorId) {
+      this._element
+        .querySelector(".element__delete-button")
+        .classList.add("element__trash_type_hidden");
+    }
+  }
 
   _setEventListeners() {
     const likeButton = this._element.querySelector(".element__like-button");
 
     const popupImagePreview = this._element.querySelector(".element__image");
 
+    const deleteButton = this._element.querySelector(".element__delete-button");
+
     likeButton.addEventListener("click", (evt) =>
       this._handleLikeButtonToggle(evt)
     );
 
-    const deleteButton = this._element.querySelector(".element__delete-button");
-    if (this._ownerId !== this._id) {
-      deleteButton.classList.add("element__trash_type_hidden");
-    }
-    deleteButton.addEventListener("click", () => this._handleDeleteClick());
+    deleteButton.addEventListener("click", () =>
+      this._handleDeleteClick(this._getId())
+    );
 
     popupImagePreview.addEventListener("click", () =>
       this._handleCardClick({

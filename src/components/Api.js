@@ -21,7 +21,7 @@ class Api {
   }
 
   /**
-   * Returns a Promise of type Response that waits for user information and card data loading
+   * Returns a Promise of type Response that waits for user information and card data from server
    * @returns Promise<Response>
    */
   getAppInfo() {
