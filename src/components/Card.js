@@ -3,6 +3,8 @@ class Card {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
+    this._ownerId = data.owner._id;
+    // this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._cardSelector = cardSelector;
@@ -47,6 +49,9 @@ class Card {
     likeButton.addEventListener("click", (evt) =>
       this._handleLikeButtonToggle(evt)
     );
+    // if (this._ownerId !== this._id) {
+    // deleteButton.classList.add(".element__delete-button_hidden");
+    // }
     deleteButton.addEventListener("click", () => this._handleDeleteClick());
 
     popupImagePreview.addEventListener("click", () =>
