@@ -26,7 +26,6 @@ import {
   profileAvatarButton,
   profileFormNameInput,
   profileFormJobInput,
-  deleteButton,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -50,13 +49,13 @@ cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
 // Handle Loading
-const handleLoading = (isLoading, modal, textInput) => {
+function handleLoading(isLoading, popup, textInput) {
   if (isLoading) {
-    modal.querySelector(".popup__button").textContent = textInput;
+    popup.querySelector(".popup__button").textContent = textInput;
   } else {
-    modal.querySelector(".popup__button").textContent = textInput;
+    popup.querySelector(".popup__button").textContent = textInput;
   }
-};
+}
 
 // Profile Card Form with API
 const userInfo = new UserInfo({
@@ -192,4 +191,3 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAvatarButton.addEventListener("click", () => profileAvatarPopup.open());
-deleteButton.addEventListener("click", () => deleteCardPopup.open());

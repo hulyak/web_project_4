@@ -63,7 +63,7 @@ class Card {
     const likeButton = this._element.querySelector(".element__like-button");
 
     const popupImagePreview = this._element.querySelector(".element__image");
-
+    z;
     const deleteButton = this._element.querySelector(".element__delete-button");
 
     likeButton.addEventListener("click", (evt) =>

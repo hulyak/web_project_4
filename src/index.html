@@ -20,12 +20,12 @@
       <!-- Profile Section -->
       <section class="profile">
         <div>
-         <div class="profile__avatar-overlay"></div>
-        <img
-          src="<%= require('./images/avatar.png')%>"
-          alt="old person with a red hat smiling to camera"
-          class="profile__avatar"
-        />
+          <div class="profile__avatar-overlay"></div>
+          <img
+            src="<%= require('./images/avatar.png')%>"
+            alt="old person with a red hat smiling to camera"
+            class="profile__avatar"
+          />
         </div>
         <div class="profile__info">
           <h1 class="profile__name">Jacques Cousteau</h1>
@@ -61,13 +61,21 @@
               <input
                 type="url"
                 name="avatar"
-                class="popup__input popup__input_type_image-link""
+                class="popup__input popup__input_type_image-link"
                 placeholder="Avatar link"
                 id="avatar-input"
                 required
               />
-              <span class="popup__input-error url-input-error"></span>
-             <button type="submit" class="popup__button" aria-label="Save Button" disabled>Save</button>
+              <span class="popup__input-error avatar-input-error"></span>
+            </label>
+            <button
+              type="submit"
+              class="popup__button"
+              aria-label="Save Button"
+              disabled
+            >
+              Save
+            </button>
           </form>
         </div>
       </section>
@@ -97,7 +105,7 @@
                 id="name-input"
                 required
               />
-            <span class="popup__input-error name-input-error"></span>
+              <span class="popup__input-error name-input-error"></span>
             </label>
             <label class="popup__form-field">
               <input
@@ -156,7 +164,6 @@
               />
               <span class="popup__input-error url-input-error"></span>
             </label>
-
             <button type="submit" class="popup__button">Create</button>
           </form>
         </div>
