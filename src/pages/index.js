@@ -22,6 +22,7 @@ import {
   profileName,
   profileAbout,
   profileAvatar,
+  profileAvatarButton,
   profileFormNameInput,
   profileFormJobInput,
   deleteButton,
@@ -53,7 +54,7 @@ const createCard = (item) => {
           handleSubmit: () => {
             api
               .deleteCard(id)
-              .then((card) => {
+              .then(() => {
                 card.handleDeleteCard();
                 api.getInitialCards().then((cards) => {
                   cardsList.renderItems(cards);
@@ -158,6 +159,6 @@ profileEditButton.addEventListener("click", () => {
   userInfoPopup.open();
 });
 
-addCardButton.addEventListener("click", () => {
-  newCardPopup.open();
-});
+addCardButton.addEventListener("click", () => newCardPopup.open());
+
+profileAvatarButton.addEventListener("click", () => profileAvatarPopup.open());

@@ -14,18 +14,26 @@ class Api {
     );
   }
 
+  loadUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    }).then((res) => this._handleResponse(res));
+  }
+
+  /**
+   * Returns a Promise of type Response that waits for user information and card data loading
+   * @returns Promise<Response>
+   */
+  getAppInfo() {
+    return Promise.all([this.loadUserInfo(), this.getInitialCards()]);
+  }
+
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       "Content-Type": "application/json",
       body: JSON.stringify({ name, link }),
-    }).then((res) => this._handleResponse(res));
-  }
-
-  loadUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
     }).then((res) => this._handleResponse(res));
   }
 
