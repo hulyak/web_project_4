@@ -22,6 +22,7 @@ import {
   profileName,
   profileAbout,
   profileAvatar,
+  profileAvatarElement,
   profileAvatarButton,
   profileFormNameInput,
   profileFormJobInput,
@@ -36,21 +37,46 @@ const api = new Api({
   },
 });
 
-// Preview Image Popup
-const imagePopup = new PopupWithImage(popupPreview);
-imagePopup.setEventListeners();
+// Form Validators
+const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
+const cardFormValidator = new FormValidator(defaultFormConfig, cardFormElement);
+const editAvatarValidator = new FormValidator(
+  defaultFormConfig,
+  profileAvatarElement
+);
+
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+editAvatarValidator.enableValidation();
+
+// Handle Loading
+const handleLoading = (isLoading, modal, textInput) => {
+  if (isLoading) {
+    modal.querySelector(".popup__button").textContent = textInput;
+  } else {
+    modal.querySelector(".popup__button").textContent = textInput;
+  }
+};
 
 // Profile Card Form with API
-const profileInfo = new UserInfo({
+const userInfo = new UserInfo({
   name: profileName,
   about: profileAbout,
   avatar: profileAvatar,
 });
 
+// Preview Image Popup
+const imagePopup = new PopupWithImage(popupPreview);
+imagePopup.setEventListeners();
+
 console.log(api.getAppInfo());
 
 // Delete card confirmation popup
-const deleteCardPopup = new PopupWithForm(popupConfirm);
+const deleteCardPopup = new PopupWithForm({
+  popupSelector: popupConfirm,
+  handleSubmit: () => {},
+});
+
 deleteCardPopup.setEventListeners();
 
 // render the cards to the DOM
@@ -71,30 +97,41 @@ api
     // Add New Card
     const newCardPopup = new PopupWithForm({
       popupSelector: popupAddCard,
-      handleSubmit: ({ name, link }) =>
+      handleSubmit: ({ name, link }) => {
+        handleLoading(true, popupAddCard, "Saving...");
         api
           .addCard({ name, link })
-          .then((item) => createCard(item))
-          .catch((err) => console.log(err)),
+          .then((item) => {
+            handleLoading(false, popupAddCard, "Save");
+            createCard(item);
+          })
+          .catch((err) => console.log(err));
+      },
     });
+
+    addCardButton.addEventListener("click", () => newCardPopup.open());
 
     newCardPopup.setEventListeners();
 
     // Create Cards
-    const renderCard = (item) => {
+    const renderCards = (item) => {
       const card = new Card(
         item,
         {
           handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
           // Delete Card Popup
           handleDeleteClick: (cardId) => {
-            deleteCardPopup.open(cardId);
-            deleteCardPopup.setSubmitHandler(() =>
+            deleteCardPopup.open();
+            deleteCardPopup.setSubmitHandler(() => {
+              handleLoading(true, popupConfirm, "Deleting...");
               api
                 .deleteCard(cardId)
-                .then(() => card.handleDeleteCard())
-                .catch((err) => console.log(err))
-            );
+                .then(() => {
+                  card.handleDeleteCard();
+                  handleLoading(true, popupConfirm, "Yes");
+                })
+                .catch((err) => console.log(err));
+            });
           },
         },
         userId,
@@ -105,20 +142,15 @@ api
   })
   .catch((err) => console.log(err));
 
-api
-  .loadUserInfo()
-  .then(({ name, about }) => {
-    userInfo.setUserInfo({ name, about });
-  })
-  .catch((err) => console.log(err));
-
+// Edit Profile Form with API
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
-  handleSubmit: ({ name, about }) => {
+  handleSubmit: ({ name, about, avatar }) => {
+    handleLoading(true, popupEditProfile, "Saving...");
     api
-      .setUserInfo({ name, about })
+      .setUserInfo({ name, about, avatar })
       .then(() => {
-        profileInfo.setUserInfo({ name, about });
+        userInfo.setUserInfo({ name, about, avatar });
       })
       .catch((err) => console.log(err));
   },
@@ -126,27 +158,29 @@ const userInfoPopup = new PopupWithForm({
 
 userInfoPopup.setEventListeners();
 
+api
+  .loadUserInfo()
+  .then(({ name, about }) => {
+    userInfo.setUserInfo({ name, about });
+  })
+  .catch((err) => console.log(err));
+
 // Update Profile Avatar
 const profileAvatarPopup = new PopupWithForm({
   popupSelector: popupProfileAvatar,
   handleSubmit: ({ avatar }) => {
+    handleLoading(true, popupProfileAvatar, "Saving...");
     api
       .setUserAvatar({ avatar })
-      .then(() => {
-        userInfo.setUserInfo({ avatar });
+      .then(({ avatar }) => {
+        userInfo.setAvatarInfo({ avatar });
+        handleLoading(false, popupProfileAvatar, "Save");
       })
       .catch((err) => console.log(err));
   },
 });
 
 profileAvatarPopup.setEventListeners();
-
-// Form Validator
-const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);
-const cardFormValidator = new FormValidator(defaultFormConfig, cardFormElement);
-
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
 
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
@@ -158,5 +192,4 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAvatarButton.addEventListener("click", () => profileAvatarPopup.open());
-addCardButton.addEventListener("click", () => newCardPopup.open());
 deleteButton.addEventListener("click", () => deleteCardPopup.open());
