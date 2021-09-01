@@ -4,7 +4,7 @@ class Card {
     this._link = data.link;
     this._id = data._id;
     this._ownerId = data.owner._id;
-    this._userId = userId;
+    // this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._cardSelector = cardSelector;
@@ -33,6 +33,8 @@ class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
+    this.deleteUserCard();
+
     this._element.querySelector(
       ".element__image"
     ).style.backgroundImage = `url(${this._link})`;
@@ -41,17 +43,20 @@ class Card {
     return this._element;
   }
 
+  deleteUserCard() {}
+
   _setEventListeners() {
     const likeButton = this._element.querySelector(".element__like-button");
-    const deleteButton = this._element.querySelector(".element__delete-button");
+
     const popupImagePreview = this._element.querySelector(".element__image");
 
     likeButton.addEventListener("click", (evt) =>
       this._handleLikeButtonToggle(evt)
     );
 
+    const deleteButton = this._element.querySelector(".element__delete-button");
     if (this._ownerId !== this._id) {
-      deleteButton.classList.add("element__trash_type_hidden ");
+      deleteButton.classList.add("element__trash_type_hidden");
     }
     deleteButton.addEventListener("click", () => this._handleDeleteClick());
 
