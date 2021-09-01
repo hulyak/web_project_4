@@ -17,6 +17,7 @@ import {
   popupEditProfile,
   popupPreview,
   popupConfirm,
+  popupProfileAvatar,
   addCardButton,
   profileName,
   profileAbout,
@@ -34,18 +35,37 @@ const api = new Api({
   },
 });
 
+// Preview Image Popup
+const imagePopup = new PopupWithImage(popupPreview);
+imagePopup.setEventListeners();
+
 // Create Cards
 const createCard = (item) => {
   const card = new Card(
     item,
     {
       handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
+      // Delete Card Popup
       handleDeleteClick: () => {
         const id = card.getId();
-        api
-          .deleteCard(id)
-          .then((card) => card.handleDeleteCard())
-          .catch((err) => console.log(err));
+        const deleteCardPopup = new PopupWithForm({
+          popupSelector: popupConfirm,
+          handleSubmit: () => {
+            api
+              .deleteCard(id)
+              .then((card) => {
+                card.handleDeleteCard();
+                api.getInitialCards().then((cards) => {
+                  cardsList.renderItems(cards);
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          },
+        });
+        deleteCardPopup.setEventListeners();
+        deleteCardPopup.open(id);
       },
     },
     cardTemplate
@@ -67,10 +87,6 @@ api
   .then((items) => cardsList.renderItems(items))
   .catch((err) => console.log(err));
 
-// Preview Image Popup
-const imagePopup = new PopupWithImage(popupPreview);
-imagePopup.setEventListeners();
-
 // Add New Card
 const newCardPopup = new PopupWithForm({
   popupSelector: popupAddCard,
@@ -83,14 +99,11 @@ const newCardPopup = new PopupWithForm({
 
 newCardPopup.setEventListeners();
 
-// deleteButton.addEventListener("click", () => {
-//   popupConfirm.open();
-// });
-
 // Profile Card Form with API
 const userInfo = new UserInfo({
   name: profileName,
   about: profileAbout,
+  avatar: profileAvatar,
 });
 
 api
@@ -113,6 +126,21 @@ const userInfoPopup = new PopupWithForm({
 });
 
 userInfoPopup.setEventListeners();
+
+// Update Profile Avatar
+const profileAvatarPopup = new PopupWithForm({
+  popupSelector: popupProfileAvatar,
+  handleSubmit: ({ avatar }) => {
+    api
+      .setUserAvatar({ avatar })
+      .then(() => {
+        userInfo.setUserInfo({ avatar });
+      })
+      .catch((err) => console.log(err));
+  },
+});
+
+profileAvatarPopup.setEventListeners();
 
 // Form Validator
 const editFormValidator = new FormValidator(defaultFormConfig, editFormElement);

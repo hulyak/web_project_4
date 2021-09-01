@@ -1,5 +1,5 @@
 class UserInfo {
-  constructor({ name, about }) {
+  constructor({ name, about, avatar }) {
     this._name = document.querySelector(name);
     this._about = document.querySelector(about);
   }
@@ -10,8 +10,9 @@ class UserInfo {
       about: this._about.textContent,
     };
   }
+
   // takes new user data and adds it on the page
-  setUserInfo({ name, about }) {
+  setUserInfo({ name, about, avatar }) {
     this._name.textContent = name;
     this._about.textContent = about;
   }
