@@ -1,23 +1,25 @@
 # Around The U.S.
 
-This is an interactive page that users can add, remove, or like their travel photos.
-
-- Users can edit their profile with the Edit Profile Modal, add new places to the list, remove the card from their list.
-- Profile form and add new card forms are checking the input values by validating the length of the input. (JS ValidityState)
+- This is an interactive page that users can add, remove, or like their travel photos.
+- Users can update their profile avatar and user information, add new places to the list.
+- User can like the cards or dislike it by toggling the heart icon. Likes are counted.
+- If the user wants to delete the card, they can click the trash can icon. They will be  prompted to confirm the deletion.
+- Users can only remove their pictures not other users. The bin icon appears only on the user's cards.
+- When the user submits the form, while they're waiting for the data, loading text will be shown to the user.
+- Forms are checking the input values by validating the length of the input. (JS ValidityState)
 - Users can close the modals by pressing the Esc key or by clicking outside the modal.
 
-## [See it live!](https://hulyak.github.io/web_project_4/)
+### [See it live!](https://hulyak.github.io/web_project_4/)
 
 Technologies and concepts:
 
-- HTML,
-- CSS, Responsive Design,
+- HTML,CSS, Responsive Design,BEM Methodology,Interface accessibility
+- Template Cloning, Form Validation
 - Figma,
-- BEM Methodology,
-- Webpack Bundler, JS transpilation and minification, CSS minification and autoprefixing, Image and font processing
-- Javascript Module System, ES6,
+- Webpack Bundler, JS transpilation and minification, CSS minification and autoprefixing, Image and font processing,
+- Javascript Module System, ES6, Babel compiler
 - OOP - Loose coupling, Encapsulation, Inheritance,and Polymorphism
-- Interface accessibility
+- API interaction, communication with the server
 
 
 ## Installation
@@ -25,7 +27,7 @@ Technologies and concepts:
 ```bash
 git clone https://github.com/hulyak/web_project_4.git
 
-npm install
+npm install  # install dependencies
 
 npm run build # builds the project
 
@@ -43,11 +45,12 @@ npm run dev # open the project in the browser localhost:8080
 
 ## Sprint 7 -> Classes
 
-- Section
+- Section wrapper
 - Card
 - FormValidator
 - UserInfo
 - Popup class is a parent class for the subclasses of PopupWithImage and PopupWithForm
+- Api class for storing API calls
 
 ## Sprint 8 -> Project Layers
 
