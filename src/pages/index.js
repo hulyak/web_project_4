@@ -126,6 +126,26 @@ api
                 .catch((err) => console.log(err));
             });
           },
+          // Like Card
+          handleLikeClick: (cardId, likeButton) => {
+            if (likeButton.classList.contains(".element__like-button_active")) {
+              api
+                .deleteLike(cardId)
+                .then((data) => {
+                  card.handleLikeCount(data.likes.length);
+                  card.handleLikeButtonToggle();
+                })
+                .catch((err) => console.error(err));
+            } else {
+              api
+                .getLikes(cardId)
+                .then((data) => {
+                  card.handleLikeCount(data.likes.length);
+                  card.handleLikeButtonToggle();
+                })
+                .catch((err) => console.error(err));
+            }
+          },
         },
         userId,
         cardTemplate

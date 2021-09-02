@@ -65,7 +65,7 @@ class Api {
    * @param {String} cardId that corresponds to a card
    * @returns Promise<Response>
    */
-  addLikes(cardId) {
+  getLikes(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
       method: "PUT",

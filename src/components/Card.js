@@ -26,35 +26,33 @@ class Card {
       .cloneNode(true);
   }
 
-  _handleLikeButtonToggle(evt) {
-    evt.target.classList.toggle("element__like-button_active");
-  }
-
   _getId() {
     return this._id;
   }
 
+  handleLikeButtonToggle(evt) {
+    evt.classList.toggle("element__like-button_active");
+  }
+
+  handleLikeCard() {
+    if (
+      this._element
+        .querySelector(".element__like-button")
+        .some((item) => item._id === this._userId)
+    ) {
+      this.likeButton.classList.add("element__like-button_active");
+    } else {
+      this.likeButton.classList.remove("element__like-button_active");
+    }
+  }
+
+  handleLikeCount(totalLikes) {
+    this._element.querySelector(".element__like-count").textContent =
+      totalLikes;
+  }
+
   handleDeleteCard() {
     this._element.remove();
-  }
-
-  setLikeCount(count) {
-    this._likeCount = count;
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-
-    this._setEventListeners();
-
-    this._hideBinIcon();
-
-    this._element.querySelector(
-      ".element__image"
-    ).style.backgroundImage = `url(${this._link})`;
-    this._element.querySelector(".element__text").textContent = this._name;
-
-    return this._element;
   }
 
   _hideBinIcon() {
@@ -65,15 +63,27 @@ class Card {
     }
   }
 
+  generateCard() {
+    this._element = this._getTemplate();
+
+    this._setEventListeners();
+    this._hideBinIcon();
+
+    this._element.querySelector(
+      ".element__image"
+    ).style.backgroundImage = `url(${this._link})`;
+    this._element.querySelector(".element__text").textContent = this._name;
+
+    return this._element;
+  }
+
   _setEventListeners() {
+    const popupImagePreview = this._element.querySelector(".element__image");
+    const deleteButton = this._element.querySelector(".element__delete-button");
     const likeButton = this._element.querySelector(".element__like-button");
 
-    const popupImagePreview = this._element.querySelector(".element__image");
-
-    const deleteButton = this._element.querySelector(".element__delete-button");
-
-    likeButton.addEventListener("click", (evt) =>
-      this._handleLikeButtonToggle(evt)
+    likeButton.addEventListener("click", () =>
+      this._handleLikeClick(this._getId(), likeButton)
     );
 
     deleteButton.addEventListener("click", () =>
