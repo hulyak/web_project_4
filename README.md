@@ -1,10 +1,10 @@
 # Around The U.S.
 
-- This is an interactive page that users can add, remove, or like their travel photos.
-- Users can update their profile avatar and user information, add new places to the list.
-- User can like the cards or dislike it by toggling the heart icon. Likes are counted.
-- If the user wants to delete the card, they can click the trash can icon. They will be  prompted to confirm the deletion.
-- Users can only remove their pictures not other users. The bin icon appears only on the user's cards.
+- This is an interactive page that the user can add, remove, or like their travel photos. They can also see other users' photos and like other users' photos.
+- The user can update their profile avatar and user information.
+- The user can like the cards or dislike them by toggling the heart icon. Likes are counted.
+- If the user wants to delete the card, they can click the bin icon. They will be  prompted to confirm the deletion.
+- The user can only remove their pictures not other users. The bin icon appears only on the user's cards.
 - When the user submits the form, while they're waiting for the data, loading text will be shown to the user.
 - Forms are checking the input values by validating the length of the input. (JS ValidityState)
 - Users can close the modals by pressing the Esc key or by clicking outside the modal.
