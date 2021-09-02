@@ -48,7 +48,7 @@ class Api {
 
   /**
    *Returns a Promise of type Response that yields user avatar
-   * @param {String} avatar the avatar url of the user's profile
+   * @param {String} avatar url of the user's profile
    * @returns Promise<Response>
    */
   setUserAvatar({ avatar }) {
@@ -62,7 +62,7 @@ class Api {
   /**
    * Returns a Promise of type Response that yields a
    * single card given an ID
-   * @param {String} cardId the ID that corresponds to a card
+   * @param {String} cardId that corresponds to a card
    * @returns Promise<Response>
    */
   addLikes(cardId) {

@@ -13,7 +13,7 @@
 
 Technologies and concepts:
 
-- HTML,CSS, Responsive Design,BEM Methodology,Interface accessibility
+- HTML, CSS, Responsive Design, BEM Methodology, Interface accessibility
 - Template Cloning, Form Validation
 - Figma,
 - Webpack Bundler, JS transpilation and minification, CSS minification and autoprefixing, Image and font processing,
