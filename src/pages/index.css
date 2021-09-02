@@ -29,7 +29,7 @@
 @import url("../styles/blocks/element/__text/element__text.css");
 @import url("../styles/blocks/element/__like-button/element__like-button.css");
 @import url("../styles/blocks/element/__like-button/_active/element__like-button_active.css");
-@import url("../styles/blocks/element/__trash_type_hidden/element__trash_type_hidden.css");
+@import url("../styles/blocks/element/__delete-button/_type_hidden/element__delete-button_type_hidden.css");
 
 /* Popup Section  */
 @import url("../styles/blocks/popup/popup.css");

@@ -68,16 +68,15 @@ console.log(api.getAppInfo());
 // Delete card confirmation popup
 const deleteCardPopup = new PopupWithForm({
   popupSelector: popupConfirm,
-  handleSubmit: () => {},
 });
 
 deleteCardPopup.setEventListeners();
 
 // render the cards to the DOM
 api
-  .getAppInfo(([userInfo, initialCardsList]) => {
-    const userId = userInfo._id;
-
+  .getAppInfo()
+  .then(([userData, initialCardsList]) => {
+    const userId = userData._id;
     // Generate Cards
     const cardsList = new Section(
       {
@@ -96,19 +95,21 @@ api
         api
           .addCard({ name, link })
           .then((item) => {
-            handleLoading(false, popupAddCard, "Save");
             createCard(item);
+            handleLoading(false, popupAddCard, "Save");
           })
           .catch((err) => console.log(err));
       },
     });
 
+    // show popup for adding a new card
+    addCardButton.addEventListener("click", () => newCardPopup.open());
     newCardPopup.setEventListeners();
 
     // Create Cards
-    const renderCards = (item) => {
+    function createCard(items) {
       const card = new Card(
-        item,
+        items,
         {
           handleCardClick: ({ name, link }) => imagePopup.open({ name, link }),
           // Delete Card Popup
@@ -130,7 +131,7 @@ api
         cardTemplate
       );
       cardsList.setItem(card.generateCard());
-    };
+    }
   })
   .catch((err) => console.log(err));
 
@@ -188,6 +189,7 @@ api
     userInfo.setUserInfo({ name, about });
   })
   .catch((err) => console.log(err));
+
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
   // prepopulate profile form at first click
@@ -198,4 +200,3 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAvatarButton.addEventListener("click", () => profileAvatarPopup.open());
-addCardButton.addEventListener("click", () => newCardPopup.open());

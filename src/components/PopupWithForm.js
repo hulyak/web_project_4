@@ -30,7 +30,7 @@ class PopupWithForm extends Popup {
     this._formElement.reset();
   }
 
-  setSubmitAction(action) {
+  setSubmitHandler(action) {
     this._handleSubmit = action;
   }
 }
