@@ -10,8 +10,8 @@ export const cardTemplate = "#cards-template";
 export const elementsList = ".elements__list";
 
 export const popupEditProfile = ".popup_type_edit-profile";
-export const popupAddCard = ".popup_type_add-card";
 export const popupPreview = ".popup_type_preview";
+export const popupAddCard = ".popup_type_add-card";
 export const popupConfirm = ".popup_type_confirm";
 export const popupProfileAvatar = ".popup_type_profile-avatar";
 
@@ -36,9 +36,9 @@ export const profileAvatarElement = document.querySelector(
   ".popup__form_type_edit-profile-avatar"
 );
 
-export const profileName = ".profile__name";
-export const profileAbout = ".profile__job";
-export const profileAvatar = ".profile__avatar";
+export const profileName = document.querySelector(".profile__name");
+export const profileAbout = document.querySelector(".profile__job");
+export const profileAvatar = document.querySelector(".profile__avatar");
 
 export const profileFormNameInput = document.querySelector(
   ".popup__input_type_name"
