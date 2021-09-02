@@ -6,7 +6,6 @@ class Section {
   }
 
   renderItems() {
-    console.log(items);
     this._items.forEach((item) => this._renderer(item));
   }
 
