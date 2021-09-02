@@ -1,7 +1,7 @@
 class Card {
   constructor(
     data,
-    { handleCardClick, handleDeleteClick },
+    { handleCardClick, handleDeleteClick, handleLikeClick },
     userData,
     cardSelector
   ) {
@@ -9,10 +9,13 @@ class Card {
     this._link = data.link;
     this._id = data._id;
     this._creatorId = data.owner._id;
+    this._likes = data.likes;
+    this._likeCount = data.likes.length;
 
     this._userId = userData;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
     this._cardSelector = cardSelector;
   }
 
@@ -33,6 +36,10 @@ class Card {
 
   handleDeleteCard() {
     this._element.remove();
+  }
+
+  setLikeCount(count) {
+    this._likeCount = count;
   }
 
   generateCard() {
