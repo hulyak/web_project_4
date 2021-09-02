@@ -30,20 +30,17 @@ class Card {
     return this._id;
   }
 
-  handleLikeButtonToggle(evt) {
-    evt.classList.toggle("element__like-button_active");
+  handleLikeCard() {
+    const likeButton = this._element.querySelector(".element__like-button");
+    [...this._likes].forEach((like) => {
+      if (like._id === like._userId) {
+        likeButton.classList.add("element__like-button_active");
+      }
+    });
   }
 
-  handleLikeCard() {
-    if (
-      this._element
-        .querySelector(".element__like-button")
-        .some((item) => item._id === this._userId)
-    ) {
-      this.likeButton.classList.add("element__like-button_active");
-    } else {
-      this.likeButton.classList.remove("element__like-button_active");
-    }
+  handleLikeButtonToggle(likeButton) {
+    likeButton.classList.toggle("element__like-button_active");
   }
 
   handleLikeCount(totalLikes) {
@@ -67,6 +64,9 @@ class Card {
     this._element = this._getTemplate();
 
     this._setEventListeners();
+
+    this.handleLikeCount(this._likeCount);
+    this.handleLikeCard();
     this._hideBinIcon();
 
     this._element.querySelector(
