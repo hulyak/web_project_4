@@ -26,7 +26,6 @@ import {
   profileAvatarButton,
   profileFormNameInput,
   profileFormJobInput,
-  deleteButton,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -50,20 +49,15 @@ cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
 // Handle Loading
-const handleLoading = (isLoading, modal, textInput) => {
+function handleLoading(isLoading, popup, textInput) {
   if (isLoading) {
-    modal.querySelector(".popup__button").textContent = textInput;
+    document.querySelector(popup).querySelector(".popup__button").textContent =
+      textInput;
   } else {
-    modal.querySelector(".popup__button").textContent = textInput;
+    document.querySelector(popup).querySelector(".popup__button").textContent =
+      textInput;
   }
-};
-
-// Profile Card Form with API
-const userInfo = new UserInfo({
-  name: profileName,
-  about: profileAbout,
-  avatar: profileAvatar,
-});
+}
 
 // Preview Image Popup
 const imagePopup = new PopupWithImage(popupPreview);
@@ -109,8 +103,6 @@ api
       },
     });
 
-    addCardButton.addEventListener("click", () => newCardPopup.open());
-
     newCardPopup.setEventListeners();
 
     // Create Cards
@@ -142,28 +134,28 @@ api
   })
   .catch((err) => console.log(err));
 
+// Profile Card Form with API
+const userInfo = new UserInfo({
+  name: profileName,
+  about: profileAbout,
+  avatar: profileAvatar,
+});
+
 // Edit Profile Form with API
 const userInfoPopup = new PopupWithForm({
   popupSelector: popupEditProfile,
-  handleSubmit: ({ name, about, avatar }) => {
+  handleSubmit: ({ name, about }) => {
     handleLoading(true, popupEditProfile, "Saving...");
     api
-      .setUserInfo({ name, about, avatar })
+      .setUserInfo({ name, about })
       .then(() => {
-        userInfo.setUserInfo({ name, about, avatar });
+        userInfo.setUserInfo({ name, about });
       })
       .catch((err) => console.log(err));
   },
 });
 
 userInfoPopup.setEventListeners();
-
-api
-  .loadUserInfo()
-  .then(({ name, about }) => {
-    userInfo.setUserInfo({ name, about });
-  })
-  .catch((err) => console.log(err));
 
 // Update Profile Avatar
 const profileAvatarPopup = new PopupWithForm({
@@ -182,6 +174,20 @@ const profileAvatarPopup = new PopupWithForm({
 
 profileAvatarPopup.setEventListeners();
 
+// Initial page load - update user info and avatar
+api
+  .loadUserInfo()
+  .then(({ avatar }) => {
+    userInfo.setAvatarInfo({ avatar });
+  })
+  .catch((err) => console.log(err));
+
+api
+  .loadUserInfo()
+  .then(({ name, about }) => {
+    userInfo.setUserInfo({ name, about });
+  })
+  .catch((err) => console.log(err));
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
   // prepopulate profile form at first click
@@ -192,4 +198,4 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAvatarButton.addEventListener("click", () => profileAvatarPopup.open());
-deleteButton.addEventListener("click", () => deleteCardPopup.open());
+addCardButton.addEventListener("click", () => newCardPopup.open());
