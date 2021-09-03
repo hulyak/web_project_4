@@ -144,7 +144,7 @@ api
           },
           // Like Card
           handleLikeClick: (cardId, likeButton) => {
-            if (likeButton.classList.contains(".element__like-button_active")) {
+            if (likeButton.classList.contains("element__like-button_active")) {
               api
                 .deleteLikes(cardId)
                 .then((data) => {
@@ -155,7 +155,7 @@ api
                 .catch((err) => console.error(err));
             } else {
               api
-                .getLikes(cardId)
+                .addLike(cardId)
                 .then((data) => {
                   console.log("api.getLikes", data.likes.length);
                   card.handleLikeCount(data.likes.length);
