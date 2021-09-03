@@ -1,4 +1,5 @@
 import "./index.css";
+import { TOKEN, GROUP_ID } from "../utils/config.js";
 import Card from "../components/Card";
 import Api from "../components/Api";
 import Section from "../components/Section.js";
@@ -28,10 +29,13 @@ import {
   profileFormJobInput,
 } from "../utils/constants.js";
 
+const token = process.env.TOKEN || TOKEN;
+const groupId = process.env.GROUP_ID || GROUP_ID;
+
 const api = new Api({
-  baseUrl: `https://around.nomoreparties.co/v1/${process.env.GROUP_ID}`,
+  baseUrl: `https://around.nomoreparties.co/v1/${groupId}`,
   headers: {
-    authorization: process.env.TOKEN,
+    authorization: token,
     "Content-Type": "application/json",
   },
 });
@@ -63,7 +67,7 @@ function handleLoading(isLoading, popup, textInput) {
 const imagePopup = new PopupWithImage(popupPreview);
 imagePopup.setEventListeners();
 
-console.log(api.getAppInfo());
+// console.log(api.getAppInfo());
 
 // Delete card confirmation popup
 const deleteCardPopup = new PopupWithForm({
@@ -72,11 +76,23 @@ const deleteCardPopup = new PopupWithForm({
 
 deleteCardPopup.setEventListeners();
 
+// Profile Card Form with API
+const userInfo = new UserInfo({
+  name: profileName,
+  about: profileAbout,
+  avatar: profileAvatar,
+});
+
 // render the cards to the DOM
 api
   .getAppInfo()
   .then(([userData, initialCardsList]) => {
     const userId = userData._id;
+
+    // update user info and avatar
+    userInfo.setAvatarInfo({ avatar: userData.avatar });
+    userInfo.setUserInfo({ name: userData.name, about: userData.about });
+
     // Generate Cards
     const cardsList = new Section(
       {
@@ -132,6 +148,7 @@ api
               api
                 .deleteLikes(cardId)
                 .then((data) => {
+                  console.log("api.deleteLikes", data.likes.length);
                   card.handleLikeCount(data.likes.length);
                   card.handleLikeButtonToggle(likeButton);
                 })
@@ -140,6 +157,7 @@ api
               api
                 .getLikes(cardId)
                 .then((data) => {
+                  console.log("api.getLikes", data.likes.length);
                   card.handleLikeCount(data.likes.length);
                   card.handleLikeButtonToggle(likeButton);
                 })
@@ -154,13 +172,6 @@ api
     }
   })
   .catch((err) => console.log(err));
-
-// Profile Card Form with API
-const userInfo = new UserInfo({
-  name: profileName,
-  about: profileAbout,
-  avatar: profileAvatar,
-});
 
 // Edit Profile Form with API
 const userInfoPopup = new PopupWithForm({
@@ -194,21 +205,6 @@ const profileAvatarPopup = new PopupWithForm({
 });
 
 profileAvatarPopup.setEventListeners();
-
-// Initial page load - update user info and avatar
-api
-  .loadUserInfo()
-  .then(({ avatar }) => {
-    userInfo.setAvatarInfo({ avatar });
-  })
-  .catch((err) => console.log(err));
-
-api
-  .loadUserInfo()
-  .then(({ name, about }) => {
-    userInfo.setUserInfo({ name, about });
-  })
-  .catch((err) => console.log(err));
 
 // Event Listeners
 profileEditButton.addEventListener("click", () => {

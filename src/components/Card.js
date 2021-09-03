@@ -10,7 +10,6 @@ class Card {
     this._id = data._id;
     this._creatorId = data.owner._id;
     this._likes = data.likes;
-    this._likeCount = data.likes.length;
 
     this._userId = userData;
     this._handleCardClick = handleCardClick;
@@ -33,7 +32,7 @@ class Card {
   handleLikeCard() {
     const likeButton = this._element.querySelector(".element__like-button");
     [...this._likes].forEach((like) => {
-      if (like._id === like._userId) {
+      if (like._id === this._userId) {
         likeButton.classList.add("element__like-button_active");
       }
     });
@@ -65,7 +64,7 @@ class Card {
 
     this._setEventListeners();
 
-    this.handleLikeCount(this._likeCount);
+    this.handleLikeCount(this._likes.length);
     this.handleLikeCard();
     this._hideBinIcon();
 
