@@ -148,7 +148,6 @@ api
               api
                 .deleteLikes(cardId)
                 .then((data) => {
-                  console.log("api.deleteLikes", data.likes.length);
                   card.handleLikeCount(data.likes.length);
                   card.handleLikeButtonToggle(likeButton);
                 })
@@ -157,7 +156,6 @@ api
               api
                 .addLike(cardId)
                 .then((data) => {
-                  console.log("api.getLikes", data.likes.length);
                   card.handleLikeCount(data.likes.length);
                   card.handleLikeButtonToggle(likeButton);
                 })
