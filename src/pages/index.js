@@ -67,7 +67,7 @@ function handleLoading(isLoading, popup, textInput) {
 const imagePopup = new PopupWithImage(popupPreview);
 imagePopup.setEventListeners();
 
-// console.log(api.getAppInfo());
+console.log(api.getAppInfo());
 
 // Delete card confirmation popup
 const deleteCardPopup = new PopupWithForm({
