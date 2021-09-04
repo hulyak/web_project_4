@@ -13,13 +13,14 @@
 
 Technologies and concepts:
 
-- HTML, CSS, Responsive Design, BEM Methodology, Interface accessibility
+- `HTML`, `CSS`, Responsive Design, BEM Methodology, Interface accessibility
 - Template Cloning, Form Validation
-- Figma,
-- Webpack Bundler, JS transpilation and minification, CSS minification and autoprefixing, Image and font processing,
+- `Figma`,
+- `Webpack` Bundler, JS transpilation and minification, CSS minification and autoprefixing, Image and font processing,
 - Javascript Module System, ES6, Babel compiler
-- OOP - Loose coupling, Encapsulation, Inheritance,and Polymorphism
-- API interaction, communication with the server
+- `OOP` - Loose coupling, Encapsulation, Inheritance,and Polymorphism
+- `API` interaction, communication with the server
+- `Dotenv` and `dotenv-webpack` to hide credentials
 
 
 ## Installation
