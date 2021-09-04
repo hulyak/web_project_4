@@ -67,8 +67,6 @@ function handleLoading(isLoading, popup, textInput) {
 const imagePopup = new PopupWithImage(popupPreview);
 imagePopup.setEventListeners();
 
-// console.log(api.getAppInfo());
-
 // Delete card confirmation popup
 const deleteCardPopup = new PopupWithForm({
   popupSelector: popupConfirm,
@@ -82,6 +80,8 @@ const userInfo = new UserInfo({
   about: profileAbout,
   avatar: profileAvatar,
 });
+
+// console.log(api.getAppInfo());
 
 // render the cards to the DOM
 api
@@ -114,6 +114,7 @@ api
             createCard(item);
             handleLoading(false, popupAddCard, "Save");
           })
+          .then(() => newCardPopup.close())
           .catch((err) => console.log(err));
       },
     });
@@ -139,6 +140,7 @@ api
                   card.handleDeleteCard();
                   handleLoading(true, popupConfirm, "Yes");
                 })
+                .then(() => deleteCardPopup.close())
                 .catch((err) => console.log(err));
             });
           },
@@ -146,7 +148,7 @@ api
           handleLikeClick: (cardId, likeButton) => {
             if (likeButton.classList.contains("element__like-button_active")) {
               api
-                .deleteLikes(cardId)
+                .deleteLike(cardId)
                 .then((data) => card.handleLikeCount(data.likes.length))
                 .then(() => card.handleLikeButtonToggle(likeButton))
                 .catch((err) => console.error(err));
@@ -178,6 +180,7 @@ const userInfoPopup = new PopupWithForm({
         userInfo.setUserInfo({ name, about });
         handleLoading(true, popupEditProfile, "Save");
       })
+      .then(() => userInfoPopup.close())
       .catch((err) => console.log(err));
   },
 });
@@ -195,6 +198,7 @@ const profileAvatarPopup = new PopupWithForm({
         userInfo.setAvatarInfo({ avatar });
         handleLoading(false, popupProfileAvatar, "Save");
       })
+      .then(() => profileAvatarPopup.close())
       .catch((err) => console.log(err));
   },
 });
@@ -203,7 +207,7 @@ profileAvatarPopup.setEventListeners();
 
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
-  // prepopulate profile form at first click
+  // prepopulate profile form at initial load
   const { name, about } = userInfo.getUserInfo();
   profileFormNameInput.value = name;
   profileFormJobInput.value = about;
