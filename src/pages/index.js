@@ -67,7 +67,7 @@ function handleLoading(isLoading, popup, textInput) {
 const imagePopup = new PopupWithImage(popupPreview);
 imagePopup.setEventListeners();
 
-console.log(api.getAppInfo());
+// console.log(api.getAppInfo());
 
 // Delete card confirmation popup
 const deleteCardPopup = new PopupWithForm({
@@ -147,18 +147,14 @@ api
             if (likeButton.classList.contains("element__like-button_active")) {
               api
                 .deleteLikes(cardId)
-                .then((data) => {
-                  card.handleLikeCount(data.likes.length);
-                  card.handleLikeButtonToggle(likeButton);
-                })
+                .then((data) => card.handleLikeCount(data.likes.length))
+                .then(() => card.handleLikeButtonToggle(likeButton))
                 .catch((err) => console.error(err));
             } else {
               api
                 .addLike(cardId)
-                .then((data) => {
-                  card.handleLikeCount(data.likes.length);
-                  card.handleLikeButtonToggle(likeButton);
-                })
+                .then((data) => card.handleLikeCount(data.likes.length))
+                .then(() => card.handleLikeButtonToggle(likeButton))
                 .catch((err) => console.error(err));
             }
           },
@@ -180,6 +176,7 @@ const userInfoPopup = new PopupWithForm({
       .setUserInfo({ name, about })
       .then(() => {
         userInfo.setUserInfo({ name, about });
+        handleLoading(true, popupEditProfile, "Save");
       })
       .catch((err) => console.log(err));
   },

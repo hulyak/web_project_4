@@ -32,7 +32,6 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      "Content-Type": "application/json",
       body: JSON.stringify({ name, link }),
     }).then((res) => this._handleResponse(res));
   }
@@ -41,7 +40,6 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
-      "Content-Type": "application/json",
       body: JSON.stringify({ name, about }),
     }).then((res) => this._handleResponse(res));
   }
