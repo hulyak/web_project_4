@@ -72,7 +72,6 @@
               type="submit"
               class="popup__button"
               aria-label="Save Button"
-              disabled
             >
               Save
             </button>
@@ -230,5 +229,16 @@
     <footer class="footer">
       <p class="footer__text">&copy; 2021 Around the U.S.</p>
     </footer>
+
+    <!-- add service worker -->
+    <script>
+      // Check that service workers are supported
+      if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+    </script>
   </body>
 </html>
