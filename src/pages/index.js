@@ -139,8 +139,8 @@ api
                 .then(() => {
                   card.handleDeleteCard();
                   handleLoading(true, popupConfirm, "Yes");
+                  deleteCardPopup.close();
                 })
-                .then(() => deleteCardPopup.close())
                 .catch((err) => console.log(err));
             });
           },
