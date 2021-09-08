@@ -21,6 +21,7 @@ Technologies and concepts:
 - `OOP` - Loose coupling, Encapsulation, Inheritance,and Polymorphism
 - `API` interaction, communication with the server
 - `Dotenv` and `dotenv-webpack` to hide credentials
+- Offline functionality is implemented through `Service Workers` and [`Workbox`](https://developers.google.com/web/tools/workbox/guides/get-started).
 
 
 ## Installation
