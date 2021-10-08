@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
-const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   devtool: "inline-source-map",
@@ -66,6 +65,5 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new Dotenv(),
-    new WorkboxPlugin.GenerateSW(),
   ],
 };
